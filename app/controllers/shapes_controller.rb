@@ -1,0 +1,2 @@
+class ShapesController < ApplicationController
+end
