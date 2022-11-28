@@ -1,0 +1,2 @@
+class PatternShapesController < ApplicationController
+end
