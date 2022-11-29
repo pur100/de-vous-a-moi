@@ -1,0 +1,19 @@
+
+.card-patterns {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  opacity: 0.80;
+  padding: 5vh;
+  border-bottom: 1px solid #000000;
+  .card-pattern img{
+    border-radius: 3px;
+    height: 228px;
+    width: auto;
+    &:hover {
+      transform:scale(1.10);
+      margin: 0 18px;
+      transition: all 0.3s ease;
+    }
+  }
+}
