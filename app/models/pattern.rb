@@ -15,6 +15,6 @@ class Pattern < ApplicationRecord
   def set_defaults
     self.name = "Pattern_Default_name" if name.nil?
     self.environment = "Environment_To_Be_Defined" if environment.nil?
-    self.color_range_id = 1
+    self.color_range_id = ColorRange.first.id
   end
 end
