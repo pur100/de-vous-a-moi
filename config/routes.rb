@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :patterns, only: [:index, :create, :show]
-
 end
