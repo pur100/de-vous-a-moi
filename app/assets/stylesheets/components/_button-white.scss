@@ -1,20 +1,34 @@
 .button-white {
-  align-items: flex-start;
-  background: #FFFFFF;
-  border: 1px solid #888888;
-  border-radius: 3px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 33px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #888888;
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin: 0 15px;
+  /* font */
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: none;
+    color: #888888;
 
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  color: #000000;
 
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
+  /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    &:hover {
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid #000;
+
+    }
+  }

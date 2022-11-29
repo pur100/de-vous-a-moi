@@ -1,1 +1,76 @@
 // Specific CSS for your home-page
+@import "components/card-shape";
+@import "components/button-white";
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.main-title {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  position: absolute;
+  top: 20%;
+  transform: translateY(-50%);
+
+}
+
+.txt {
+  white-space: nowrap;
+  animation: scrollTxt 1s linear infinite;
+}
+
+@keyframes scrollTxt {
+  0%{
+    transform: translate(-100%, 0);
+  }
+  100% {
+    transform: translate(0%, 0);
+  }
+}
+
+.description {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: absolute;
+  top: 51%;
+  transform: translateY(-50%);
+  border-bottom: 3px solid #000000;
+
+}
+
+.txt {
+  white-space: nowrap;
+  animation: scrollTxt 25s linear infinite;
+}
+
+@keyframes scrollTxt {
+  0% {
+    transform: translate(0,0);
+  }
+  100% {
+    transform: translate(-100%,0);
+  }
+}
+
+
+.create-inspirate {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-bottom: 3px solid #000000;
+
+  a {
+    margin: 20px;
+  }
+}
