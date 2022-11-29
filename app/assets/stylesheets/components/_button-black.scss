@@ -1,0 +1,31 @@
+.button-black{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px 33px;
+  gap: 10px;
+  background: #000000;
+  border-radius: 3px;
+  box-sizing: border-box;
+  margin: 0 15px;
+/* font */
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-decoration: none;
+/* C_5 */
+  color: #FFFFFF;
+/* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  &:hover {
+    color: #FFFFFF;
+    font-weight:  bolder;
+    font-size: 18px;
+
+  }
+}
