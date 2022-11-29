@@ -1,3 +1,12 @@
 <h1>ID du motif: <%= @pattern.id %></h1>
 <p> Nom du motif: <%= @pattern.name %></p>
 <p> Environement du motif: <%= @pattern.environment %></p>
+<style>
+  canvas {
+    border: 1px solid black;
+  }
+</style>
+<canvas data-controller="pattern" id="canvas" width="500" height="500"></canvas>
+<%= inline_svg_tag "colibri.svg", id: 'test-shape', height: '100', width: '100' %>
+
+<button data-controller="pattern" data-action="click->pattern#addAShape" class="btn btn-primary"> Click me</button>
