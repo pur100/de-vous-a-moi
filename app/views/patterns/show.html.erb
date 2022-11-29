@@ -1,0 +1,34 @@
+<h1>ID du motif: <%= @pattern.id %></h1>
+<p> Nom du motif: <%= @pattern.name %></p>
+<p> Environement du motif: <%= @pattern.environment %></p>
+
+
+
+<%# Bas à sable pour jouer avec les svg %>
+
+<%# On joue avec les svg pour pouvoir les affciher %>
+<p><%= @shape_files.name %></p>
+<div class="size">
+  <%# Vient charger le svg directement depuis la variable @shape_files  %>
+  <%# <%= render inline: @shape_files.svg_code%>
+  <%# Vient charger le svg depuis une partiale %>
+  <%= render 'shared/shapes/colibri' %>
+</div>
+
+<%# Script JS pour tester le changement de couleur %>
+<script>
+  console.log("on est la");
+  // On chope le svg avec du JS: const colibri = document.getElementById('colibri)
+  const colibri = document.getElementById('colibri');
+
+  // On chope la sous-forme et on lui change la couleur avec avec: colibri.querySelector('.calque_1').style.fill = '#FEFEFE'
+  colibri.querySelector('.contour').style.fill = "<%= @color_range.sample %>";
+  colibri.querySelector('.calque_1').style.fill = "<%= @color_range.sample %>";
+  colibri.querySelector('.calque_2').style.fill = "<%= @color_range.sample %>";
+  colibri.querySelector('.calque_3').style.fill = "<%= @color_range.sample %>";
+  colibri.querySelector('.calque_4').style.fill = "<%= @color_range.sample %>";
+  colibri.querySelector('.calque_5').style.fill = "<%= @color_range.sample %>";
+  colibri.querySelector('.calque_6').style.fill = "<%= @color_range.sample %>";
+  colibri.querySelector('.calque_7').style.fill = "<%= @color_range.sample %>";
+  colibri.querySelector('.calque_8').style.fill = "<%= @color_range.sample %>";
+</script>
