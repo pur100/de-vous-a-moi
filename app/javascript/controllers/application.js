@@ -1,5 +1,5 @@
 import { Application } from "@hotwired/stimulus"
-import 'swiper/css/bundle'
+// import 'swiper/css/bundle'
 
 
 const application = Application.start()

@@ -25,10 +25,11 @@
     flex-grow: 0;
 
     &:hover {
-      color: #000;
-      font-weight: bold;
+      background: #888888;;
+      // font-weight: bold;
       text-decoration: none;
       border: 1px solid #000;
-
+      color: #000;
+      border: 1px solid white;
     }
   }
