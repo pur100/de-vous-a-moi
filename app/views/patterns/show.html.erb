@@ -7,7 +7,7 @@
     border: 1px solid black;
   }
 </style>
-<canvas data-controller="pattern" id="canvas" width="500" height="500"></canvas>
+<canvas data-controller="pattern" id="canvas" width="1500" height="1500"></canvas>
 <%= inline_svg_tag "colibri.svg", id: 'test-shape', height: '100', width: '100' %>
 
 <button data-controller="pattern" data-action="click->pattern#addAShape" class="btn btn-primary"> Click me</button>
@@ -21,9 +21,9 @@
 <p><%= @shape_files.name %></p>
 <div class="size">
   <%# Vient charger le svg directement depuis la variable @shape_files  %>
-  <%# <%= render inline: @shape_files.svg_code%>
+  <%= render inline: @shape_files.svg_code %>
   <%# Vient charger le svg depuis une partiale %>
-  <%= render 'shared/shapes/colibri' %>
+  <%# <%= render 'shared/shapes/colibri' %> %>
 </div>
 
 <%# Script JS pour tester le changement de couleur %>
@@ -43,4 +43,3 @@
   colibri.querySelector('.calque_7').style.fill = "<%= @color_range.sample %>";
   colibri.querySelector('.calque_8').style.fill = "<%= @color_range.sample %>";
 </script>
-
