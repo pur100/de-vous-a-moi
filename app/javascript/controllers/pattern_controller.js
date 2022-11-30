@@ -2,12 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 import { fabric } from 'fabric'
 
 export default class extends Controller {
-  static targets = ["shape", "shapeForColor"];
+  static targets = ["shape", "shapeForColoring"];
 
   connect() {
     console.log("connecté");
   }
-
+// RORO ____ WORK IN PROGRESS
   addAShape() {
     const canvas = new fabric.Canvas('canvas');
     fabric.loadSVGFromString(this.shapeTarget.innerHTML, function(objects, options) {
@@ -24,6 +24,7 @@ export default class extends Controller {
       });
     });
   }
+// RORO ____ WORK IN PROGRESS
 }
 
 // GET ACTIVE OBJECT
