@@ -4,11 +4,11 @@
 
 import { application } from "./application"
 
-import CarousselController from "./caroussel_controller"
-application.register("caroussel", CarousselController)
+// import CarousselController from "./caroussel_controller"
+// application.register("caroussel", CarousselController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import PatternController from "./pattern_controller"
-application.register("pattern", PatternController)
+// import PatternController from "./pattern_controller"
+// application.register("pattern", PatternController)
