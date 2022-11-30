@@ -7,12 +7,11 @@
     border: 1px solid black;
   }
 </style>
-<canvas data-controller="pattern" id="canvas" width="1500" height="1500"></canvas>
-<%= inline_svg_tag "colibri.svg", id: 'test-shape', height: '100', width: '100' %>
 
-<button data-controller="pattern" data-action="click->pattern#addAShape" class="btn btn-primary"> Click me</button>
-
-
+<div data-controller="pattern">
+  <canvas id="canvas" width="500" height="500"></canvas>
+  <%= inline_svg_tag "colibri.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape", pattern_target: "shape" } %>
+</div>
 
 
 <%# Bas à sable pour jouer avec les svg %>
