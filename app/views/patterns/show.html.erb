@@ -9,12 +9,13 @@
 </style>
 
 <div data-controller="pattern">
-  <canvas id="canvas" width="500" height="500"></canvas>
+  <canvas data-pattern-target="shapeForColor" id="canvas" width="500" height="500"></canvas>
   <%= inline_svg_tag "colibri.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape", pattern_target: "shape" } %>
+  <button data-action="click->pattern#changeShapeColor" class="btn btn-primary">Change Color</button>
 </div>
 
 
-<%# Bas à sable pour jouer avec les svg %>
+<%# Bac à sable pour jouer avec les svg %>
 
 <%# On joue avec les svg pour pouvoir les affciher %>
 <p><%= @shape_files.name %></p>
@@ -22,7 +23,7 @@
   <%# Vient charger le svg directement depuis la variable @shape_files  %>
   <%= render inline: @shape_files.svg_code %>
   <%# Vient charger le svg depuis une partiale %>
-  <%# <%= render 'shared/shapes/colibri' %> %>
+  <%# <%= render 'shared/shapes/colibri' %>
 </div>
 
 <%# Script JS pour tester le changement de couleur %>
