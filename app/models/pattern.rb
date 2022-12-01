@@ -6,6 +6,8 @@ class Pattern < ApplicationRecord
   has_many :pattern_shapes
   has_many :purchases
 
+  has_one_attached :photo
+
   # validations
   validates :name, :environment, presence: true
 

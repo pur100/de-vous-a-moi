@@ -4,7 +4,7 @@ class PatternsController < ApplicationController
   #   @pattern = Pattern.new
   # end
   def index
-
+    @patterns = Pattern.all
   end
 
   def create
@@ -23,4 +23,8 @@ class PatternsController < ApplicationController
     @color_range = [ColorRange.first.color1, ColorRange.first.color2, ColorRange.first.color3, ColorRange.first.color4]
   end
 
+  def dashboard
+    @pattern = Booking.where(user: current_user)
+    authorize @pattern
+  end
 end

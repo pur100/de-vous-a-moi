@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require "open-uri"
+
+
 
 puts "Destruction de la base User"
 Pattern.destroy_all
@@ -26,6 +29,140 @@ color_range_3 = ColorRange.create(color1: "#5E4DB9", color2: "#94DDC1", color3: 
 color_range_4 = ColorRange.create(color1: "#10398A", color2: "#87CF9F", color3: "#D0E8A5", color4: "#DA0045")
 color_range_5 = ColorRange.create(color1: "#5265FF", color2: "#ACBAFF", color3: "#FFB4E5", color4: "#CD82F8")
 color_range_6 = ColorRange.create(color1: "#0D1CA3", color2: "#00E5DA", color3: "#CC0229", color4: "#FF9181")
+
+puts 'création pattern'
+file_1 = URI.open('app/assets/images/index/poisson.png')
+pattern_1 = Pattern.new(name: 'Poissons', environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_1.save!
+pattern_1.photo.attach(io: file_1, filename: "poisson.png", content_type: "image/png")
+pattern_1.save!
+file_2 = URI.open('app/assets/images/index/aqueuse.png')
+pattern_2 = Pattern.new(name: 'Agitations aqueuses', environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_2.save!
+pattern_2.photo.attach(io: file_2, filename: "aqueuse.png", content_type: "image/png")
+pattern_2.save!
+file_3 = URI.open('app/assets/images/index/aztèques.png')
+pattern_3 = Pattern.new(name: 'Mur aztèque', environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_3.save!
+pattern_3.photo.attach(io: file_3, filename: "aztèques.png", content_type: "image/png")
+pattern_3.save!
+file_4 = URI.open('app/assets/images/index/coquillages-et-crustacés.png')
+pattern_4 = Pattern.new(name: 'Coquillages et crustacés', environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_4.save!
+pattern_4.photo.attach(io: file_4, filename: "coquillages-et-crustacés.png", content_type: "image/png")
+pattern_4.save!
+file_5 = URI.open('app/assets/images/index/éden.png')
+pattern_5 = Pattern.new(name: "Jardin d'Éden", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_5.save!
+pattern_5.photo.attach(io: file_5, filename: "éden.png", content_type: "image/png")
+pattern_5.save!
+file_6 = URI.open('app/assets/images/index/fleurs-paon.png')
+pattern_6 = Pattern.new(name: "Les fleurs du paon", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_6.save!
+pattern_6.photo.attach(io: file_6, filename: "fleurs-paon.png", content_type: "image/png")
+pattern_6.save!
+file_7 = URI.open('app/assets/images/index/floraison-automnale.png')
+pattern_7 = Pattern.new(name: "Floraison automnale", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_7.save!
+pattern_7.photo.attach(io: file_7, filename: "floraison-automnale.png", content_type: "image/png")
+pattern_7.save!
+file_8 = URI.open('app/assets/images/index/floral.png')
+pattern_8 = Pattern.new(name: "La Caravelle", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_8.save!
+pattern_8.photo.attach(io: file_8, filename: "floral.png", content_type: "image/png")
+pattern_8.save!
+file_9 = URI.open('app/assets/images/index/floralise.png')
+pattern_9 = Pattern.new(name: "Muraille florale", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_9.save!
+pattern_9.photo.attach(io: file_9, filename: "floralise.png", content_type: "image/png")
+pattern_9.save!
+file_10 = URI.open('app/assets/images/index/isola-bella.png')
+pattern_10 = Pattern.new(name: "Isola Bella", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_10.save!
+pattern_10.photo.attach(io: file_10, filename: "isola-bella.png", content_type: "image/png")
+pattern_10.save!
+file_11 = URI.open('app/assets/images/index/jardin-anglais.png')
+pattern_11 = Pattern.new(name: "Jardin Anglais", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_11.save!
+pattern_11.photo.attach(io: file_11, filename: "jardin-anglais.png", content_type: "image/png")
+pattern_11.save!
+file_12 = URI.open('app/assets/images/index/léopards.png')
+pattern_12 = Pattern.new(name: "La sieste des léopards", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_12.save!
+pattern_12.photo.attach(io: file_12, filename: "léopards.png", content_type: "image/png")
+pattern_12.save!
+file_13 = URI.open('app/assets/images/index/mélomane.png')
+pattern_13 = Pattern.new(name: "Végétation mélomane", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_13.save!
+pattern_13.photo.attach(io: file_13, filename: "mélomane.png", content_type: "image/png")
+pattern_13.save!
+file_14 = URI.open('app/assets/images/index/mexicaine.png')
+pattern_14 = Pattern.new(name: "Colonne mexicaine", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_14.save!
+pattern_14.photo.attach(io: file_14, filename: "mexicaine.png", content_type: "image/png")
+pattern_14.save!
+file_15 = URI.open('app/assets/images/index/oiseau-bleu.png')
+pattern_15 = Pattern.new(name: "L'oiseau bleu", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+pattern_15.save!
+pattern_15.photo.attach(io: file_15, filename: "oiseau-bleu.png", content_type: "image/png")
+pattern_15.save!
+# file_16 = URI.open('app/assets/images/index/oiseau-royal.png')
+# pattern_16 = Pattern.new(name: "Le moineau roi", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_16.save!
+# pattern_16.photo.attach(io: file_16, filename: "oiseau-royal.png", content_type: "image/png")
+# pattern_16.save!
+# file_17 = URI.open('app/assets/images/index/oiseaux-paradis.png')
+# pattern_17 = Pattern.new(name: "Le carnaval des cigognes", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_17.save!
+# pattern_17.photo.attach(io: file_17, filename: "oiseaux-paradis.png", content_type: "image/png")
+# pattern_17.save!
+# file_18 = URI.open('app/assets/images/index/oiseaux.png')
+# pattern_18 = Pattern.new(name: "Les oiseaux de paradis", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_18.save!
+# pattern_18.photo.attach(io: file_18, filename: "oiseaux.png", content_type: "image/png")
+# pattern_18.save!
+# file_19 = URI.open('app/assets/images/index/ondes-lac.png')
+# pattern_19 = Pattern.new(name: "Ondes du lac", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_19.save!
+# pattern_19.photo.attach(io: file_19, filename: "ondes-lac.png", content_type: "image/png")
+# pattern_19.save!
+# file_20 = URI.open('app/assets/images/index/paon.png')
+# pattern_20 = Pattern.new(name: "Le défilé des paons", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_20.save!
+# pattern_20.photo.attach(io: file_20, filename: "paon.png", content_type: "image/png")
+# pattern_20.save!
+# file_21 = URI.open('app/assets/images/index/pivoines.png')
+# pattern_21 = Pattern.new(name: "Pivoines", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_21.save!
+# pattern_21.photo.attach(io: file_21, filename: "pivoines.png", content_type: "image/png")
+# pattern_21.save!
+# file_22 = URI.open('app/assets/images/index/renard.png')
+# pattern_22 = Pattern.new(name: "Renard malicieux", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_22.save!
+# pattern_22.photo.attach(io: file_22, filename: "renard.png", content_type: "image/png")
+# pattern_22.save!
+# file_23 = URI.open('app/assets/images/index/sous-marin.png')
+# pattern_23 = Pattern.new(name: "Sous l'océan !", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_23.save!
+# pattern_23.photo.attach(io: file_23, filename: "sous-marin.png", content_type: "image/png")
+# pattern_23.save!
+# file_24 = URI.open('app/assets/images/index/tapis-volant.png')
+# pattern_24 = Pattern.new(name: "Tapis volant", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_24.save!
+# pattern_24.photo.attach(io: file_24, filename: "tapis-volant.png", content_type: "image/png")
+# pattern_24.save!
+# file_25 = URI.open('app/assets/images/index/violine.png')
+# pattern_25 = Pattern.new(name: "Efflorescence", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_25.save!
+# pattern_25.photo.attach(io: file_25, filename: "violine.png", content_type: "image/png")
+# pattern_25.save!
+# file_26 = URI.open('app/assets/images/index/folie-géométrique.png')
+# pattern_26 = Pattern.new(name: "Folie géométrique", environment: 'to_be_defined', color_range_id: ColorRange.first.id, user_id: User.first.id)
+# pattern_26.save!
+# pattern_26.photo.attach(io: file_26, filename: "folie-géométrique.png", content_type: "image/png")
+# pattern_26.save!
+
+
 
 # Une classe est crée manuellement pour chaque calque. A retrouver dans les fichiers scss
 # On remplace aussi l'id par le nom du svg pour pouvoir le sélectionner avec du JS
