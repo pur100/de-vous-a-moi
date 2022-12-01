@@ -14,6 +14,11 @@
   <%= inline_svg_tag "colibri.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape", pattern_target: "shape" } %>
   <%= inline_svg_tag "losange", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape", pattern_target: "shape" } %>
   <button data-action="click->pattern#changeShapeColor" class="btn btn-primary">Change Color</button>
+  <ul>
+    <% @color_range.each do |color| %>
+      <li data-action="click->pattern#changeShapeColor" class="btn btn-primary list-unstyled"> <%= color %> </li>
+    <% end %>
+  </ul>
 </div>
 
 
@@ -33,7 +38,7 @@
   console.log("on est la");
   // On chope le svg avec du JS: const colibri = document.getElementById('colibri)
   const colibri = document.getElementById('colibri');
-  const losange = document.getElementById('losange');
+
   // On chope la sous-forme et on lui change la couleur avec avec: colibri.querySelector('.calque_1').style.fill = '#FEFEFE'
   colibri.querySelector('.contour').style.fill = "<%= @color_range.sample %>";
   colibri.querySelector('.calque_1').style.fill = "<%= @color_range.sample %>";
