@@ -64,39 +64,17 @@
 </div>
 
 <%# <div class="level-4"> %>
-  <div class="card-patterns">
-    <div class="parent" onclick="" >
-      <div class="child bg-one" style="background: url(<%= image_path "homepage/patterns/motif-test.png" %>)">
-        <div class="box-black">
+
+<div class="card-patterns">
+  <% @patterns.sample(5).each do |pattern| %>
+      <div class="parent" onclick="" >
+        <div class="child bg-one" style="background: url('<%= cl_image_path pattern.photo.key %>'); background-size: cover;">
+          <div class="box-black">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="parent" onclick="" >
-      <div class="child bg-one" style="background: url(<%= image_path "homepage/patterns/motif-test.png" %>)">
-        <div class="box-black">
-        </div>
-      </div>
-    </div>
-    <div class="parent" onclick="" >
-      <div class="child bg-one" style="background: url(<%= image_path "homepage/patterns/motif-test.png" %>)">
-        <div class="box-black">
-        </div>
-      </div>
-    </div>
-    <div class="parent" onclick="" >
-      <div class="child bg-one" style="background: url(<%= image_path "homepage/patterns/motif-test.png" %>)">
-        <div class="box-black">
-        </div>
-      </div>
-    </div>
-    <div class="parent" onclick="" >
-      <div class="child bg-one" style="background: url(<%= image_path "homepage/patterns/motif-test.png" %>)">
-        <div class="box-black">
-        </div>
-      </div>
-    </div>
-  </div>
-<%# </div> %>
+  <% end %>
+</div>
 
 <%# <div class="level-5"> %>
 <div class="create-inspirate">

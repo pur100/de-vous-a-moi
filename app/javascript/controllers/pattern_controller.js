@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   addAShape(event) {
-    // on load le svg souhaité (en cliquant sur l'image du svg disponible sur la page)
+    // On vient chercher le svg cliqué grace au event.target.innerHTML (on ne passe plus par des targets comme lorsqu'il n'y avait qu'une seule forme)
     fabric.loadSVGFromString(event.target.innerHTML, this.#loadSVG.bind(this))
   }
 

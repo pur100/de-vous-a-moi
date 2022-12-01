@@ -10,8 +10,11 @@
 
 <div data-controller="pattern">
   <canvas id="canvas" width="500" height="500"></canvas>
-  <%= inline_svg_tag "crabe.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+  <%= inline_svg_tag "colibri.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+  <%= inline_svg_tag "losange.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
   <%= inline_svg_tag "fleur.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+  <%= inline_svg_tag "crabe.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+  <button data-action="click->pattern#changeShapeColor" class="btn btn-primary">Change Color</button>
   <ul>
     <% @color_range.each do |color| %>
       <li data-action="click->pattern#changeShapeColor" class="btn btn-primary list-unstyled"> <%= color %> </li>
