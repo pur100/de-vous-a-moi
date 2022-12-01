@@ -1,6 +1,7 @@
 // Specific CSS for your home-page
 @import "components/card-shape";
 @import "components/button-white";
+@import "components/sort-by";
 
 *,
 ::before,
@@ -75,24 +76,17 @@
 }
 
 
-#level-3{
+#home-3{
+  top: 550px;
   display: flex;
   flex-direction: row;
   width: 100%;
   position: absolute;
   justify-content: center;
-  top: 553px;
   h2 {
     font-weight: bold;
     margin: 0 20px;
     padding: 6px 15px;
-  }
-  .search-filter {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    height: 9vh;
   }
 }
 
