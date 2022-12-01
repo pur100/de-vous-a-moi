@@ -60,24 +60,24 @@ static targets = ["shape", "shapeForColoring"];
 }
 
 // RORO ____ WORK IN PROGRESS
-  addAShape() {
-    const canvas = new fabric.Canvas('canvas');
-    fabric.loadSVGFromString(this.shapeTarget.innerHTML, function(objects, options) {
-      let obj = fabric.util.groupSVGElements(objects, options);
-      canvas.add(obj).renderAll();
-      obj.scaleToHeight(canvas.height/2); // Scales it down to half the size of the canvas
-      obj.scaleToWidth(canvas.width/2); // Scales it down to half the size of the canvas
-      obj.center();
-      // permet de sélectionner la target svg sur click et de lui donner du style
-      obj.on('selected', function(options) {
-        options.target._objects.forEach(object => {
-          object.set({ fill: '#DA0D58' });
-        });
-      });
-    });
-  }
+  // addAShape() {
+  //   const canvas = new fabric.Canvas('canvas');
+  //   fabric.loadSVGFromString(this.shapeTarget.innerHTML, function(objects, options) {
+  //     let obj = fabric.util.groupSVGElements(objects, options);
+  //     canvas.add(obj).renderAll();
+  //     obj.scaleToHeight(canvas.height/2); // Scales it down to half the size of the canvas
+  //     obj.scaleToWidth(canvas.width/2); // Scales it down to half the size of the canvas
+  //     obj.center();
+  //     // permet de sélectionner la target svg sur click et de lui donner du style
+  //     obj.on('selected', function(options) {
+  //       options.target._objects.forEach(object => {
+  //         object.set({ fill: '#DA0D58' });
+  //       });
+  //     });
+  //   });
+  // }
 
-}
+// }
 
 // GET ACTIVE OBJECT
 // changeShapeColor(){
