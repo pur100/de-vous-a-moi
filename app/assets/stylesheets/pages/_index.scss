@@ -1,11 +1,28 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "svg_test";
+@import "components/sort-by";
+
+
+#index-3{
+  top: 312px;
+  border-bottom: 5px solid black;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: absolute;
+  justify-content: center;
+  h2 {
+    font-weight: bold;
+    margin: 0 20px;
+    padding: 6px 15px;
+  }
+}
 
 
 .collection {
   width: 100%;
-  margin-top: 240px;
+  margin-top: 306px;
   display: flex;
   align-content: space-between;
   justify-content: center;
