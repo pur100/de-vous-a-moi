@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   root to: "pages#home"
 
-  resources :patterns, only: [:index, :create, :show, :dashboard]
+  resources :patterns, only: [:index, :create, :show]
+  get 'dashboard', to: 'patterns#dashboard'
 end
