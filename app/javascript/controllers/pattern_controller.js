@@ -24,7 +24,7 @@ static targets = ["shape", "shapeForColoring"];
 
       canvas.add(obj).renderAll();
       obj.scaleToHeight(canvas.height/2)
-        obj.center()getActiveObject();
+        obj.center();
 
       // Change color of the svg just after adding it to the canvas
       const color = '#D556C4';
