@@ -6,18 +6,42 @@ static targets = ["shape", "shapeForColoring"];
 
   connect() {
     console.log("connecté");
+    this.canvas = new fabric.Canvas('canvas');
   }
 
 
-  // Fabrizio addShape
   addAShape() {
+   // on crée un canvas de travail pour fabric dans le canvas HTML
+    // on donne à l'élément canvas HTML la valeur de notre nouveau canvas (de la sorte, canvas "fabric" est accesible partout, au même titre que cavas "html")
+    // document.getElementById("canvas").fabric = canvas;
+    // on load le svg souhaité (en cliquant sur l'image du svg disponible sur la page)
+    fabric.loadSVGFromString(this.shapeTarget.innerHTML, this.#loadSVG.bind(this))
 
-    console.log("dans addAShape");
+// RORO ____ WORK IN PROGRESS
 
+  // methode pour changer la couleur de la forme sélectionnée
+  changeShapeColor() {
+    // const canvas = Canvas.where(this.shapeForColoringTarget);
+    // const canvas = document.getElementById("canvas").fabric;
+    // console.log(this.canvas.getActiveObject());
+    let activ_object = this.canvas.getActiveObject();
+    activ_object._objects.forEach(object => {
+      object.set({ fill: '#DA0D58' });
+    });
+  }
 
-    const canvas = new fabric.Canvas('canvas');
+  #loadSVG(objects, options) {
+    let obj = fabric.util.groupSVGElements(objects, options);
+    this.canvas.add(obj).renderAll();
+    obj.scaleToHeight(this.canvas.height/2); // Scales it down to half the size of the canvas
+    obj.scaleToWidth(this.canvas.width/2); // Scales it down to half the size of the canvas
+    obj.center();
+  };
+}
 
-// Fabrizio Sandbox
+// FIN RORO SANDBOX CHANGE COLOR
+
+// DEBUT FABRIZIO SANDBOX
     // On charge le svg dans le canvas
     fabric.loadSVGFromString(svg, function(objects, options) {
       let obj = fabric.util.groupSVGElements(objects, options);
@@ -57,44 +81,8 @@ static targets = ["shape", "shapeForColoring"];
       }
     }
   }
-}
+// FIN FABRIZIO SANDBOX
 
-// RORO ____ WORK IN PROGRESS
-  // addAShape() {
-  //   const canvas = new fabric.Canvas('canvas');
-  //   fabric.loadSVGFromString(this.shapeTarget.innerHTML, function(objects, options) {
-  //     let obj = fabric.util.groupSVGElements(objects, options);
-  //     canvas.add(obj).renderAll();
-  //     obj.scaleToHeight(canvas.height/2); // Scales it down to half the size of the canvas
-  //     obj.scaleToWidth(canvas.width/2); // Scales it down to half the size of the canvas
-  //     obj.center();
-  //     // permet de sélectionner la target svg sur click et de lui donner du style
-  //     obj.on('selected', function(options) {
-  //       options.target._objects.forEach(object => {
-  //         object.set({ fill: '#DA0D58' });
-  //       });
-  //     });
-  //   });
-  // }
-
-// }
-
-// GET ACTIVE OBJECT
-// changeShapeColor(){
-//  let obj = fabric.getActiveObject();
-//  console.log(obj);
-// }
-
-//  METTRE DE LA COULEUR
-// const color = '#1D8888';
-// // obj._objects.length
-// if (obj && obj._objects) {
-//   for (var i = 0; i < obj._objects.length; i++) {
-//     obj._objects[i].set({
-//       fill: color
-//     });
-//   }
-// }
 
 // METHODE NESTEE DANS ADD A SHAPE
 // const testMethod = () => {
@@ -102,4 +90,3 @@ static targets = ["shape", "shapeForColoring"];
 //   console.log(obj)
 //   this.#displaySettings(obj)
 // }
-// RORO ____ WORK IN PROGRESS
