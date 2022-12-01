@@ -641,10 +641,10 @@ events@^3.2.0:
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
-fabric@^6.0.0-rc.0:
-  version "6.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/fabric/-/fabric-6.0.0-rc.0.tgz#73a4ff89c7ff6f02c671eb7a98ee0ba62e519ca4"
-  integrity sha512-2iN6OnManM7mLzBLymU0eOD3pydVy29pBJDssi5UHV8lhe3iZ9MqYJhwn2QpWLLxmBTPIgsCzPrDj19CdE3zrw==
+fabric@^5.2.4:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/fabric/-/fabric-5.2.4.tgz#c8c9d711313f0d211d5a94ebb1fe22259fe8c2b1"
+  integrity sha512-3+oLKvsbSJ76/nvPPrQVuUJDp0kOh8i867PpdrOPIHUyN+eLc+9nY3rmzMmDw6ndRm20f/uULv55G8sN01j9+Q==
   optionalDependencies:
     canvas "^2.8.0"
     jsdom "^19.0.0"
