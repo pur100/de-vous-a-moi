@@ -11,9 +11,12 @@ static targets = ["shape", "shapeForColoring"];
     this.canvas = new fabric.Canvas('canvas');
   }
 
-  addAShape() {
+  addAShape(event) {
     // on load le svg souhaité (en cliquant sur l'image du svg disponible sur la page)
-    fabric.loadSVGFromString(this.shapeTarget.innerHTML, this.#loadSVG.bind(this))
+    console.log(event.target.innerHTML)
+    // On vient chercher le svg cliqué grace au event.target.innerHTML (on ne passe plus par des targets comme lorsqu'il n'y avait qu'une seule forme)
+    fabric.loadSVGFromString(event.target.innerHTML, this.#loadSVG.bind(this))
+    // fabric.loadSVGFromString(this.shapeTarget.innerHTML, this.#loadSVG.bind(this))
   }
 
   // methode pour changer la couleur de la forme sélectionnée
