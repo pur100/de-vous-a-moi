@@ -10,5 +10,8 @@ application.register("hello", HelloController)
 import PatternController from "./pattern_controller"
 application.register("pattern", PatternController)
 
+import PatternInspiController from "./pattern_inspi_controller"
+application.register("pattern-inspi", PatternInspiController)
+
 import ShapeController from "./shape_controller"
 application.register("shape", ShapeController)
