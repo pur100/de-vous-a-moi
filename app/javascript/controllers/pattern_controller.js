@@ -2,13 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 import { fabric } from 'fabric'
 
 export default class extends Controller {
-// static targets = ["shape", "shapeForColoring"];
+static targets = ["shapeArray"];
 // static values = { color: String }
 
   connect() {
     console.log("connectéd");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas('canvas');
+    this.shapeArray = [];
   }
 
   addAShape(event) {
@@ -29,10 +30,21 @@ export default class extends Controller {
 
   groupSelection() {
     // sur click du bouton, activer la methode pour grouper la sélection
+    this.canvas.discardActiveObject();
+    this.selection = new fabric.ActiveSelection(this.canvas._objects, {
+      canvas: this.canvas
+    });
+    this.canvas.setActiveObject(this.selection);
+    this.canvas.renderAll();
   }
+    // this.group = new fabric.Group(this.canvas._objects);
+    // this.canvas.clear().renderAll();
+    // this.canvas.add(this.group);
 
   unGroupSelection() {
     // sur click du bouton, activer la methode pour dégrouper la sélection
+    this.canvas.discardActiveObject();
+    this.canvas.renderAll();
   }
 
   // private methode pour grouper les éléments du svg qu'on load, le sizer et le centrer
@@ -43,11 +55,13 @@ export default class extends Controller {
     // this.obj.center();
     // console.log(this.canvas._objects.hasControls);
     objects.splice(-1); // retirer le calque supérieur du crabe
+    this.shapeArray.push(objects);
+    this.shapeArrayTarget.insertAdjacentHTML("afterend", this.shapeArray.slice(-1).split);
+    console.log(this.shapeArray);
     this.canvas.add.apply(this.canvas, objects);
     groupSVGElements(objects, options)
     this.canvas.renderAll();
     // console.log(objects);
-
     // objects.forEach(object => {
     //   this.canvas.add(object);
     //   console.log(object);
