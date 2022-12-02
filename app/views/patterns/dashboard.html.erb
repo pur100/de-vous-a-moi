@@ -1,5 +1,44 @@
   <div class="main-title">
     <span class="txt t1"> <h1>TES CRÉATIONS ... &nbsp;</h1></span>
     <span class="txt t2"> <h1>TES CRÉATIONS ... &nbsp;</h1></span>
+    <span class="txt t3"> <h1>TES CRÉATIONS ... &nbsp;</h1></span>
   </div>
 
+<div class="infos">
+
+  <div class="user-espace">
+    <h2>« Miroir, miroir, mon beau miroir... »</h2>
+  <%# <%= @user.email %>
+  </div>
+  <div class="my-patterns">
+    <% if @pattern.empty? %>
+      <h2>Oups ... Tu n'as aucun motif pour l'instant !</h2>
+      <h1> Lance toi ...</h1>
+      <div class="create">
+        <%= link_to "Créer",  patterns_path, data: {turbo_method: :post}, class: "button-black" %>
+        <%= link_to "Find inspiration", patterns_path, class: "button-white" %>
+      </div>
+    <% else %>
+      <% @pattern.each do |pattern| %>
+        <div class='card'>
+          <div class="parent" >
+            <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>" class="child bg-one" style="background-image: url('<%= cl_image_path pattern.photo.key %>')">
+              <div class="box-black">
+              </div>
+            </div>
+          </div>
+
+          <div class='card-desc'>
+            <span class='card-desc-first'>
+            <h2><strong><%= pattern.name %></strong></h2>
+              <p><small>Pattern author</small></p>
+            </span>
+            <span class='card-desc-last'>
+            <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>"><i class="fa-solid fa-eye"></i></p>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
