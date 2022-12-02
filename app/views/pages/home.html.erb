@@ -68,18 +68,14 @@
 <div class="card-patterns">
   <% @patterns.sample(5).each do |pattern| %>
       <div class="parent" >
-        <div class="img-wrapper">
-        </div>
-        <%# <% if pattern.photo.attached? %>
-          <%# je render une image  %>
-          <%# <%= image_tag('homepage/motif-test.png') %>
-        <%# <% else %>
-          <%# je render une image statique de placeholder %>
-        <%# <% end %>
-        <div class="child bg-one" style="background: url('<%= cl_image_path pattern.photo.key %>'); background-size: cover;">
-          <div class="box-black">
+        <% if pattern.photo.attached? %>
+          <div class="child bg-one" style="background: url('<%= cl_image_path pattern.photo.key %>'); background-size: cover;">
+        <% else %>
+          <div class="child bg-one" style="background: url('<%= image_path "homepage/patterns/motif-test.png" %>'); background-size: cover;">
+        <% end %>
+            <div class="box-black">
+            </div>
           </div>
-        </div>
       </div>
   <% end %>
 </div>
