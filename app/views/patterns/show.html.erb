@@ -19,6 +19,7 @@
     <% @color_range.each do |color| %>
       <li data-action="click->pattern#changeShapeColor" class="btn btn-primary list-unstyled"> <%= color %> </li>
     <% end %>
+     <input data-action="click->pattern#changeShapeColor" type="color" id="head" name="head" value="#e66465">
   </ul>
 </div>
 

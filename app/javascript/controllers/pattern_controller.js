@@ -19,7 +19,8 @@ export default class extends Controller {
   // methode pour changer la couleur de la forme sélectionnée
   changeShapeColor(event) {
     let activ_object = this.canvas.getActiveObject();
-    let color = event.target.innerHTML;
+    // let color = event.target.innerHTML;
+    let color = event.target.value;
     // activ_object._objects.forEach(object => {
     activ_object.set({ fill: color });
     // });
