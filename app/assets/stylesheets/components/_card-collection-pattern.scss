@@ -1,0 +1,179 @@
+
+
+.card {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  margin: 26px 20px;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+
+.parent {
+  border-radius: 0.5rem 0.5rem 0 0;
+  height: 300px;
+  width: 100%;
+  background-size: cover;
+  // border: 1px solid blue;
+  overflow: hidden;
+  position: relative;
+  // float: left;
+  display: inline-block;
+  cursor: pointer;
+
+}
+
+.child {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+.parent:hover .child, .parent:focus .child {
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.parent:hover .child:before, .parent:focus .child:before {
+  display: block;
+
+}
+
+.child:before {
+  content: "";
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.box-black {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+  &:hover {
+    opacity: 0;
+  }
+}
+
+.card-desc {
+
+  padding: 1rem;
+  color: #9397ad;
+  top: -15px;
+  height: 92px;
+  position: relative;
+  .card-desc-last .fa-solid{
+    gap: 1rem;
+    position: absolute;
+    right: 16px;
+    top: 61px;
+    font-size: 22px;
+    color: white;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 3px;
+    &:hover{
+      background: #888888;;
+      color: white;
+      }
+    }
+
+  .card-desc-first {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+
+}
+#overlay {
+  // background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
+
+    .card-overlay {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      background-color: white;
+      padding: 30px;
+    }
+    .parent-overlay {
+      border-radius: 0.5rem;
+      height: 442px;
+      width: 100%;
+      background-size: cover;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+
+    }
+
+    .parent-overlay:hover .child-overlay, .parent-overlay:focus .child-overlay {
+      -ms-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -webkit-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+
+    .parent-overlay:hover .child-overlay:before, .parent-overlay:focus .child-overlay:before {
+      display: block;
+
+    }
+
+  .card-desc-overlay {
+    padding: 1rem;
+    color: #9397ad;
+    position: relative;
+    .card-desc-last-overlay img{
+      gap: 1rem;
+      position: absolute;
+      right: 26px;
+      top: -26px;
+      height: 30px;
+      &:hover{
+        filter: brightness(0.5);
+        }
+      }
+
+    .card-desc-first-overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      position: relative;
+    }
+
+    .card-desc-last-overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      a {
+        margin-top: 10px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}

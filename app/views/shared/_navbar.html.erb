@@ -18,21 +18,21 @@
               <%= image_tag "homepage/panier.svg" %>
             <% end %>
           </li>
+          <li class="nav-item">
+            <%= link_to dashboard_path, class:"nav-item" do %>
+              <%= image_tag "homepage/avatar.svg" %>
+            <% end %>
+          </li>
           <%# <li class="nav-item"> %>
             <%# <%= link_to "#"dashboard_path, do %>
               <%# <%= image_tag "homepage/search.svg" %>
             <%# <% end %>
-          </li>
-          <li class="nav-item">
-            <% link_to  do %>
-              <%= image_tag "homepage/avatar.svg" %>
-            <% end %>
-          </li>
+          <%# </li> %>
           <li class="nav-item dropdown">
             <%= image_tag "homepage/menu.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Mon espace", "#", class: "dropdown-item" %>
-              <%= link_to "Mes motifs", "#", class: "dropdown-item" %>
+              <%# <%= link_to "Mon espace", "#", class: "dropdown-item" %>
+              <%= link_to "Mes motifs", dashboard_path, class: "dropdown-item" %>
               <%= link_to "Contact", "#", class: "dropdown-item" %>
               <%= link_to "À propos", "#", class: "dropdown-item" %>
               <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
