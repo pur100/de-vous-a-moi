@@ -24,7 +24,6 @@ class PatternsController < ApplicationController
   end
 
   def dashboard
-    @pattern = Booking.where(user: current_user)
-    authorize @pattern
+    @pattern = Pattern.where(user: current_user)
   end
 end
