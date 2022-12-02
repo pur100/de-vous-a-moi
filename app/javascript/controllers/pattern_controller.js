@@ -6,7 +6,7 @@ export default class extends Controller {
 // static values = { color: String }
 
   connect() {
-    console.log("connecté");
+    console.log("connectéd");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas('canvas');
   }
@@ -44,6 +44,7 @@ export default class extends Controller {
     // console.log(this.canvas._objects.hasControls);
     objects.splice(-1); // retirer le calque supérieur du crabe
     this.canvas.add.apply(this.canvas, objects);
+    groupSVGElements(objects, options)
     this.canvas.renderAll();
     // console.log(objects);
 
