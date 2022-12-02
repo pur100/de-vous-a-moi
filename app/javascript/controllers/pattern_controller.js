@@ -56,10 +56,9 @@ static targets = ["shapeArray"];
     // console.log(this.canvas._objects.hasControls);
     objects.splice(-1); // retirer le calque supérieur du crabe
     this.shapeArray.push(objects);
-    this.shapeArrayTarget.insertAdjacentHTML("afterend", this.shapeArray.slice(-1).split);
+    this.shapeArrayTarget.insertAdjacentHTML("afterend", this.shapeArray.slice(-1));
     console.log(this.shapeArray);
     this.canvas.add.apply(this.canvas, objects);
-    groupSVGElements(objects, options)
     this.canvas.renderAll();
     // console.log(objects);
     // objects.forEach(object => {
