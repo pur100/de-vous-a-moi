@@ -12,19 +12,17 @@
     <div data-controller="pattern" style="display: flex;">
       <canvas id="canvas" width="500" height="500"></canvas>
       <div class="main-menu">
-        <%= inline_svg_tag "colibri.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
-        <%= inline_svg_tag "losange.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
-        <%= inline_svg_tag "fleur.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
-        <%= inline_svg_tag "crabe.svg", id: 'test-shape', height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+        <%= inline_svg_tag "colibri.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+        <%= inline_svg_tag "losange.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" }, class: "d-none" %>
+        <%= inline_svg_tag "fleur.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+        <%= inline_svg_tag "crabe.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
         <button data-action="click->pattern#groupSelection" class="button-black">Group All</button>
         <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button>
         <ul>
           <% @color_range.each do |color| %>
-            <li data-action="click->pattern#changeShapeColor" class="button-black list-unstyled"> <%= color %> </li>
+             <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color%>; color: <%= color%>" class="btn list-unstyled"> <%= color%></li>
           <% end %>
-            <input data-action="click->pattern#changeShapeColor" type="color" id="head" name="head" value="#e66465">
         </ul>
-        <div data-pattern-target="shapeArray"></div>
         </div>
     </div>
   </div>
@@ -34,38 +32,4 @@
         border: 1px solid black;
       }
     </style>
-  </div>
-
-
-<% if false %>
-<%# Bac à sable pour jouer avec les svg %>
-
-<%# On joue avec les svg pour pouvoir les affciher %>
-<p><%= @shape_files.name %></p>
-<div class="size">
-  <%# Vient charger le svg directement depuis la variable @shape_files  %>
-  <%= render inline: @shape_files.svg_code %>
-  <%# Vient charger le svg depuis une partiale %>
-  <%# <%= render 'shared/shapes/colibri' %>
 </div>
-
-<%# Script JS pour tester le changement de couleur %>
-<script>
-  console.log("on est la");
-  // On chope le svg avec du JS: const colibri = document.getElementById('colibri)
-  const colibri = document.getElementById('colibri');
-
-  // On chope la sous-forme et on lui change la couleur avec avec: colibri.querySelector('.calque_1').style.fill = '#FEFEFE'
-  colibri.querySelector('.contour').style.fill = "<%= @color_range.sample %>";
-  colibri.querySelector('.calque_1').style.fill = "<%= @color_range.sample %>";
-  colibri.querySelector('.calque_2').style.fill = "<%= @color_range.sample %>";
-  colibri.querySelector('.calque_3').style.fill = "<%= @color_range.sample %>";
-  colibri.querySelector('.calque_4').style.fill = "<%= @color_range.sample %>";
-  colibri.querySelector('.calque_5').style.fill = "<%= @color_range.sample %>";
-  colibri.querySelector('.calque_6').style.fill = "<%= @color_range.sample %>";
-  colibri.querySelector('.calque_7').style.fill = "<%= @color_range.sample %>";
-  colibri.querySelector('.calque_8').style.fill = "<%= @color_range.sample %>";
-</script>
-
-</div>
-<% end %>
