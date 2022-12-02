@@ -1,0 +1,11 @@
+
+<div class="container">
+  <%= simple_form_for(pattern) do |f| %>
+  <div class="input">
+      <%= f.input :name, label: "Nom de ton motif", :input_html => {class: 'response-project'}%>
+      <div class="submit">
+        <%= f.button :submit, "Créer mon bar à jeu", class: "button-orange" %>
+      </div>
+    </div>
+  <% end %>
+</div>
