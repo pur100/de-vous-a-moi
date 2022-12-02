@@ -1,0 +1,25 @@
+
+<button type="button" class="button-black" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Créer
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" id="overlay">
+      <div class='card-overlay'>
+          <%= simple_form_for(pattern) do |f| %>
+            <div class="input">
+                <%= f.input :name, label: "Nom de ton motif", :input_html => {class: 'response-project'}%>
+                <div class="submit">
+                  <%= link_to "Créer",  patterns_path, data: {turbo_method: :post}, class: "button-black" %>
+
+                  <%= f.button :submit, "Créer mon pattern", class: "button-orange" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
