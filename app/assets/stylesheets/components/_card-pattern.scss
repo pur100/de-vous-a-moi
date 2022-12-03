@@ -11,15 +11,14 @@
     justify-content: space-evenly;
     flex-direction: row;
     width: 100%;
-    // z-index: -1;
     justify-content: center;
+    // position: absolute;
     padding: 30px 50px;
-    margin-top: 138px;
-
+    margin-top: 336px;
 
     .parent {
       border-radius: 0.5rem 0.5rem 0 0;
-      height: 266px;
+      height: 150px;
       width: 100%;
       // background-size: cover;
       overflow: hidden;

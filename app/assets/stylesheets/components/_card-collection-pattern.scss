@@ -1,14 +1,19 @@
 
 
 .card {
-  width: 20rem;
+  width: 242px;
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 318px;
   margin: 26px 20px;
   gap: 1rem;
   border-radius: 0.5rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  h2 {
+    font-size: 16px;
+    margin: 0;
+
+  }
 
 }
 

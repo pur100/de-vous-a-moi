@@ -6,7 +6,7 @@
 
 
 #index-3{
-  top: 312px;
+  top: 265px;
   border-bottom: 5px solid black;
   display: flex;
   flex-direction: row;
@@ -18,12 +18,16 @@
     margin: 0 20px;
     padding: 6px 15px;
   }
+  .search-filter {
+    margin-top: -84px;
+
+  }
 }
 
 
 .collection {
   width: 100%;
-  margin-top: 306px;
+  margin-top: 205px;
   display: flex;
   align-content: space-between;
   justify-content: center;
