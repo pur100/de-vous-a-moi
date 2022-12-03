@@ -2,24 +2,23 @@
 
 #level-2 {
   overflow: hidden;
-  height: 381px;
-	// background: white;
 
   .card-shapes {
 
-    height: 180px;
-    width: 3550px;
-    margin-top: 197px;
+    height: 139px;
+    width: 3560px;
+    position: absolute;
+    top: 172px;
     white-space: nowrap;
 
 
     .bar {
-      height: 180px;
+      height: 140px;
     }
 
     img {
       margin-right: 0px;
-      width: 115.75px;
+      width: 80.75px;
       height: auto;
       display: inline-block;
       margin-top: 10px;
@@ -29,7 +28,7 @@
 
     .first {
       animation-timing-function: cubic-bezier(0.55,-0.01, 0.43, 0.96);
-      animation: bannermove 15s infinite;
+      animation: bannermove 15s  infinite;
       // &:hover {
       //   animation-play-state: paused;
 
@@ -42,7 +41,7 @@
        margin-left: 0px;
     }
     100% {
-       margin-left: -2113px;
+       margin-left: -1866px;
     }
 
    }

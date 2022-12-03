@@ -1,0 +1,9 @@
+meta_product_name : "De vous à moi"
+meta_title : "De vous à moi - Same same, but different ..."
+meta_description : "« Miroir, miroir, mon beau miroir... »
+Vous participez activement au design du modèle que vous portez.
+Il a été fabriqué pour vous et seulement pour vous, c’est donc que vous êtes
+spécial au point de détenir ce privilège. Grâce à votre contribution,
+l’objet reflète votre personnalité et vous avez de quoi être fier de vous !"
+meta_image : "logo-2.png" # doit exister dans `app/assets/images/`
+# twitter_account : "@product_twitter_account" # requis pour les cartes Twitter
