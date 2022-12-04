@@ -1,3 +1,4 @@
+  <div class="contenu">
   <div class="main-title">
     <span class="txt t1"> <h1>TES CRÉATIONS ... &nbsp;</h1></span>
     <span class="txt t2"> <h1>TES CRÉATIONS ... &nbsp;</h1></span>
@@ -7,7 +8,20 @@
 <div class="infos">
 
   <div class="user-espace">
-    <h2>« Miroir, miroir, mon beau miroir... »</h2>
+    <div class="info-user">
+      <strong><h3>Miroir, miroir, </h3></strong>
+      <strong><h3>Mon beau miroir...</h3></strong>
+    </div>
+    <div class="info-user">
+      <h2>Vos informations :</h2>
+      <p>Nom :</p>
+      <p>Prénom :</p>
+      <p>Email :</p>
+      <%= link_to "Modifier", patterns_path, class: "button-white" %>
+    </div>
+     <div class="info-user-3">
+      <%= link_to "Find inspiration", patterns_path, class: "button-white" %>
+    </div>
   <%# <%= @user.email %>
   </div>
   <div class="my-patterns">
@@ -45,4 +59,5 @@
     <% end %>
     </div>
   </div>
+</div>
 </div>
