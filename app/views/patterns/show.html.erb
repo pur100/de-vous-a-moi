@@ -13,7 +13,7 @@
   } */
 </style>
 
-<div class="container d-flex justify-content-between m-3 p-3" data-controller="pattern">
+<div class="container d-flex justify-content-between m-3 p-3" data-controller="pattern" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
   <div class="d-flex flex-column">
     <div class="p-3">
     <h3> Formes disponibles </h3>
@@ -21,6 +21,7 @@
       <%= inline_svg_tag "losange.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" }, class: "d-none" %>
       <%= inline_svg_tag "fleur.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
       <%= inline_svg_tag "crabe.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+       
     </div>
     <div class="p-3">
       <h3> Couleurs disponibles </h3>
@@ -31,8 +32,12 @@
       </ul>
     </div>
     <div class="d-flex align-items" class="p-3">
-    <button data-action="click->pattern#groupSelection" class="button-black">Group All</button>
-    <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button>
+      <button data-action="click->pattern#groupSelection" class="button-black">Group All</button>
+      <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button>
+      <button data-action="click->pattern#saveCanvas" class="button-black">Save</button>
+      <button data-action="click->pattern#loadCanvas" class="button-black">Load</button>
+      <button data-action="click->pattern#undo" class="button-black">Undo</button>
+      <button data-action="click->pattern#redo" class="button-black">Redo</button>
     </div>
   </div>
 

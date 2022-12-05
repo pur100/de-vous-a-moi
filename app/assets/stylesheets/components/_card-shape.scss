@@ -7,8 +7,10 @@
     height: 139px;
     width: 3560px;
     position: absolute;
-    top: 172px;
+    top: 182px;
     white-space: nowrap;
+    max-width: 100vw;
+    overflow: hidden;
 
 
     .bar {
@@ -18,7 +20,7 @@
     img {
       margin-right: 0px;
       width: 80.75px;
-      height: auto;
+      height: 96px;
       display: inline-block;
       margin-top: 10px;
       margin-bottom: 10px;

@@ -1,16 +1,26 @@
 import { Controller } from "@hotwired/stimulus"
 import { fabric } from 'fabric'
 
-export default class extends Controller {
-  static targets = ["shapes"];
+// Save each shape as well
 
-  connect() {
-    console.log("connecté")
-    // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
-    this.canvas = new fabric.Canvas('canvas');
-    this.count = 0;
+export default class extends Controller {
+  static values = {
+    update: String, // updateValue is the link to pattern/id/update used in save function
+    json: String // jsonValue is pattern.json
   }
 
+  connect() {
+    console.log("connectéd");
+    // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
+    this.canvas = new fabric.Canvas('canvas');
+    this.#loadCanvas() // On load le canvas s'il a déjà été sauvegardé
+    this.count = 0;
+    this.json = JSON.stringify( this.canvas.toJSON() ) // save the "virgin" canvas to a json file
+    this.history = [] // history will store all the json files when we hit the save button
+    this.index = -1 // index is the number of element of history. will be updated when we hit save as well
+    this.undo_index = -1 // we will decrement undo_index each time we hit undo and increment it each time we hit redo
+  }
+  
   setActiveLayer(event) {
     const that = this
     that.canvas.getObjects().forEach(function(object) {
@@ -50,6 +60,57 @@ export default class extends Controller {
         }
       })
     })
+
+  undo() {
+    // parse the data into the canvas
+    if (this.undo_index > 0) {
+      this.undo_index--
+    }
+    this.canvas.loadFromJSON(this.history[this.undo_index]); // We load the previsou version of the saved canvas
+    // re-render the canvas
+    this.canvas.renderAll();
+  }
+
+  redo() {
+    // parse the data into the canvas
+    if (this.undo_index < this.history.length - 1) {
+      this.undo_index++
+    }
+    this.canvas.loadFromJSON(this.history[this.undo_index]); // We load the next version of the saved canvas
+    // re-render the canvas
+    this.canvas.renderAll();
+  }
+
+  #loadCanvas() {
+    // parse the data into the canvas
+    this.canvas.loadFromJSON(this.jsonValue);
+    // re-render the canvas
+    this.canvas.renderAll();
+  }
+
+  saveCanvas() {
+    // convert canvas to a json string
+    this.json = JSON.stringify( this.canvas.toJSON() );
+    this.history.push(this.json)
+    this.index++
+    this.undo_index = this.index
+    // Create a new formdata to send json to rails via AJAX fetch
+    const formData = new FormData();
+    // We give our json to formdata
+    formData.append('json', this.json );
+    // Token for security
+    const csrfToken = document.getElementsByName("csrf-token")[0].content;
+
+    // On vient fetcher l'url pattern/id/update en lui donnant le this.json en body pour lé récupérer dans le controller rails
+    fetch(this.updateValue, {
+      method: "PATCH", // Patch method to update our pattern
+      headers: { "Accept": "application/json", "X-CSRF-Token": csrfToken },
+      body: formData // we give the formdata declared above to the fetch body -> rails side, we can retrieve the info with params[:json]
+    })
+      .then(response => response.json())
+      // .then((data) => {
+      //   console.log(data)
+      // })
   }
 
   addAShape(event) {
