@@ -13,15 +13,14 @@
   } */
 </style>
 
-<div class="container d-flex justify-content-between m-3 p-3" data-controller="pattern" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
-  <div class="d-flex flex-column">
+<div class="container d-flex m-3 p-3 row" data-controller="pattern" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
+  <div class="container d-flex flex-column col-4">
     <div class="p-3">
-    <h3> Formes disponibles </h3>
+      <h3> Formes disponibles </h3>
       <%= inline_svg_tag "colibri.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
       <%= inline_svg_tag "losange.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" }, class: "d-none" %>
       <%= inline_svg_tag "fleur.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
       <%= inline_svg_tag "crabe.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
-       
     </div>
     <div class="p-3">
       <h3> Couleurs disponibles </h3>
@@ -31,20 +30,26 @@
         <% end %>
       </ul>
     </div>
-    <div class="d-flex align-items" class="p-3">
-      <button data-action="click->pattern#groupSelection" class="button-black">Group All</button>
-      <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button>
-      <button data-action="click->pattern#saveCanvas" class="button-black">Save</button>
-      <button data-action="click->pattern#loadCanvas" class="button-black">Load</button>
-      <button data-action="click->pattern#undo" class="button-black">Undo</button>
-      <button data-action="click->pattern#redo" class="button-black">Redo</button>
+    <div class="p-3">
+      <h3> Actions </h3>
+      <div class="p-3">
+        <button data-action="click->pattern#groupSelection" class="button-black">Select all</button>
+        <%# <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button> %>
+        <button data-action="click->pattern#saveCanvas" class="button-black">Save</button>
+        <button data-action="click->pattern#loadCanvas" class="button-black">Load</button>
+        <button data-action="click->pattern#undo" class="button-black">Undo</button>
+        <button data-action="click->pattern#redo" class="button-black">Redo</button>
+        <button data-action="click->pattern#clearCanvas" class="button-black">Clear all</button>
+        <button data-action="click->pattern#removeSelection" class="button-black">Delete selection</button>
+      </div>
     </div>
   </div>
-
-  <div id="shape-block">
+  <div class="container col-4">
+    <div id="shape-block">
+      <h3 class="p-3"> Mes formes </h3>
+    </div>
   </div>
-
-  <div style="align-self: center">
-    <canvas id="canvas" width="500" height="500"></canvas>
+  <div class="container col-4">
+    <canvas id="canvas" width="800" height="800"></canvas>
   </div>
 </div>
