@@ -127,6 +127,12 @@ export default class extends Controller {
     this.canvas.renderAll();
   }
 
+  setBackgroundColor(event) {
+    let color = event.target.innerHTML;
+    this.canvas.set({ backgroundColor: color });
+    this.canvas.renderAll();
+  }
+
   groupSelection() {
     // sur click du bouton, activer la methode pour grouper l'ensemble des éléments du tableau
     this.canvas.discardActiveObject();

@@ -31,6 +31,14 @@
       </ul>
     </div>
     <div class="p-3">
+      <h3> Couleurs de fond disponibles </h3>
+      <ul>
+        <% @color_range.each do |color| %>
+          <li data-action="click->pattern#setBackgroundColor" style="background-color: <%=color%>; color: <%= color%>" class="btn list-unstyled"> <%= color%></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="p-3">
       <h3> Actions </h3>
       <div class="p-3">
         <button data-action="click->pattern#groupSelection" class="button-black">Select all</button>
