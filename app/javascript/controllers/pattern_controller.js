@@ -20,7 +20,7 @@ export default class extends Controller {
     this.index = -1 // index is the number of element of history. will be updated when we hit save as well
     this.undo_index = -1 // we will decrement undo_index each time we hit undo and increment it each time we hit redo
   }
-  
+
   setActiveLayer(event) {
     const that = this
     that.canvas.getObjects().forEach(function(object) {
@@ -60,6 +60,7 @@ export default class extends Controller {
         }
       })
     })
+  }
 
   undo() {
     // parse the data into the canvas
@@ -142,23 +143,35 @@ export default class extends Controller {
     this.canvas.renderAll();
   }
 
-  #loadSVG(objects, options) {
-    this.obj = fabric.util.groupSVGElements(objects, options);
-    const actions = document.getElementById('shape-block');
-    this.count += 1;
-    this.obj.name = `Forme-${this.count}`;
-    actions.insertAdjacentHTML("beforeend", `<h2 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer'>${this.obj.name}</h2>`);
-    let i = 0;
-    this.obj._objects.forEach((path) => {
-      path.id = `Forme-${this.count}-layer-${i}`;
-      actions.insertAdjacentHTML("beforeend", `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer'>${path.id}</div>`)
-      i++;
-    })
+  clearCanvas() {
+    alert("You are going to delete the Canvas, are you sure ?");
+    this.canvas.clear();
+  }
 
+  removeSelection(){
+    alert("You are going to delete the selected shape, are you sure ?");
+    this.canvas.remove(this.canvas.getActiveObject());
+  }
+
+  #loadSVG(objects, options) {
+    // load SVG
+    this.obj = fabric.util.groupSVGElements(objects, options);
     this.canvas.add(this.obj).renderAll();
     this.obj.scaleToHeight(this.canvas.height/2); // Scales it down to half the size of the canvas
     this.obj.scaleToWidth(this.canvas.width/2); // Scales it down to half the size of the canvas
     this.obj.center();
+
+    this.count += 1;
+    // afficher les formes et sous-formes
+    const actions = document.getElementById('shape-block');
+    this.obj.name = `Forme-${this.count}`;
+    actions.insertAdjacentHTML("beforeend", `<span class="p-3"> -------------- </span> <br> <h2 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="p-3" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${this.obj.name}</h2>`);
+    let i = 0;
+    this.obj._objects.forEach((path) => {
+      path.id = `Forme-${this.count}-layer-${i}`;
+      actions.insertAdjacentHTML("beforeend", `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="px-3" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${path.id}</div>`)
+      i++;
+    })
   };
 }
 
