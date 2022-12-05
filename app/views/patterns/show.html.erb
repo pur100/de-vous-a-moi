@@ -1,31 +1,45 @@
-<%# <% content_for :meta_title, "#{@pattern.name} is on #{DEFAULT_META["meta_product_name"]}" %>
-<%# <% content_for :meta_description, @pattern.description %>
-<%# <% content_for :meta_image, cl_image_path(@pattern.photo.path) %>
-<div class="generator">
+<%# <div class="generator"> %>
+<%# <div class="main-menu"> %>
+<%# <div class="espace-créa"> %>
 
-  <%# <div class="main-menu"> %>
-  <div class="espace-créa">
-    <div data-controller="pattern" style="display: flex;">
-      <canvas id="canvas" width="500" height="500"></canvas>
-      <div class="main-menu">
-        <%= inline_svg_tag "colibri.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
-        <%= inline_svg_tag "losange.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" }, class: "d-none" %>
-        <%= inline_svg_tag "fleur.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
-        <%= inline_svg_tag "crabe.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
-        <button data-action="click->pattern#groupSelection" class="button-black">Group All</button>
-        <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button>
-        <ul>
-          <% @color_range.each do |color| %>
-             <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color%>; color: <%= color%>" class="btn list-unstyled"> <%= color%></li>
-          <% end %>
-        </ul>
-        </div>
+<style>
+  canvas {
+    border: 1px solid black;
+  }
+  /* #shape-block{
+    border: 1px solid black;
+    width: 200px;
+    height: content;
+  } */
+</style>
+
+<div class="container d-flex justify-content-between m-3 p-3" data-controller="pattern">
+  <div class="d-flex flex-column">
+    <div class="p-3">
+    <h3> Formes disponibles </h3>
+      <%= inline_svg_tag "colibri.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+      <%= inline_svg_tag "losange.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" }, class: "d-none" %>
+      <%= inline_svg_tag "fleur.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+      <%= inline_svg_tag "crabe.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+    </div>
+    <div class="p-3">
+      <h3> Couleurs disponibles </h3>
+      <ul>
+        <% @color_range.each do |color| %>
+          <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color%>; color: <%= color%>" class="btn list-unstyled"> <%= color%></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="d-flex align-items" class="p-3">
+    <button data-action="click->pattern#groupSelection" class="button-black">Group All</button>
+    <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button>
     </div>
   </div>
 
-    <style>
-      canvas {
-        border: 1px solid black;
-      }
-    </style>
+  <div id="shape-block">
+  </div>
+
+  <div style="align-self: center">
+    <canvas id="canvas" width="500" height="500"></canvas>
+  </div>
 </div>
