@@ -4,7 +4,6 @@ import { fabric } from 'fabric'
 // Save each shape as well
 
 export default class extends Controller {
-  // static targets = ["shapeArray"];
   static values = {
     update: String, // updateValue is the link to pattern/id/update used in save function
     json: String // jsonValue is pattern.json
@@ -15,12 +14,52 @@ export default class extends Controller {
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas('canvas');
     this.#loadCanvas() // On load le canvas s'il a déjà été sauvegardé
-    this.shapeArray = [];
+    this.count = 0;
     this.json = JSON.stringify( this.canvas.toJSON() ) // save the "virgin" canvas to a json file
     this.history = [] // history will store all the json files when we hit the save button
     this.index = -1 // index is the number of element of history. will be updated when we hit save as well
     this.undo_index = -1 // we will decrement undo_index each time we hit undo and increment it each time we hit redo
   }
+  
+  setActiveLayer(event) {
+    const that = this
+    that.canvas.getObjects().forEach(function(object) {
+      if (object.name === event.currentTarget.innerText) {
+        that.canvas.setActiveObject(object);
+        that.canvas.renderAll();
+      } else {
+        object._objects.forEach((path) => {
+          if (path.id === event.currentTarget.innerText) {
+            that.canvas.setActiveObject(path);
+            that.canvas.renderAll();
+          }
+        })
+      }
+    })
+  }
+
+  highlightLayer(event) {
+    const that = this
+    that.canvas.getObjects().forEach(function(object) {
+      object._objects.forEach((path) => {
+        if (path.id === event.currentTarget.innerText) {
+          path.set({ stroke: "#FFFFFF" });
+          that.canvas.renderAll();
+        }
+      })
+    })
+  }
+
+  unHighlightLayer(event) {
+    const that = this
+    that.canvas.getObjects().forEach(function(object) {
+      object._objects.forEach((path) => {
+        if (path.id === event.currentTarget.innerText) {
+          path.set({ stroke: "" });
+          that.canvas.renderAll();
+        }
+      })
+    })
 
   undo() {
     // parse the data into the canvas
@@ -76,7 +115,7 @@ export default class extends Controller {
 
   addAShape(event) {
     // On vient chercher le svg cliqué grace au event.target.innerHTML
-    fabric.loadSVGFromString(event.target.innerHTML, this.#loadSVG.bind(this))
+    fabric.loadSVGFromString(event.target.innerHTML, this.#loadSVG.bind(this));
   }
 
   changeShapeColor(event) {
@@ -104,12 +143,29 @@ export default class extends Controller {
   }
 
   #loadSVG(objects, options) {
-    // private methode pour
-    objects.splice(-1); // retirer le calque supérieur du crabe - trouver une autre solution car celle ci est nulle
-    this.canvas.add.apply(this.canvas, objects);
-    this.canvas.renderAll();
+    this.obj = fabric.util.groupSVGElements(objects, options);
+    const actions = document.getElementById('shape-block');
+    this.count += 1;
+    this.obj.name = `Forme-${this.count}`;
+    actions.insertAdjacentHTML("beforeend", `<h2 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer'>${this.obj.name}</h2>`);
+    let i = 0;
+    this.obj._objects.forEach((path) => {
+      path.id = `Forme-${this.count}-layer-${i}`;
+      actions.insertAdjacentHTML("beforeend", `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer'>${path.id}</div>`)
+      i++;
+    })
+
+    this.canvas.add(this.obj).renderAll();
+    this.obj.scaleToHeight(this.canvas.height/2); // Scales it down to half the size of the canvas
+    this.obj.scaleToWidth(this.canvas.width/2); // Scales it down to half the size of the canvas
+    this.obj.center();
   };
 }
+
+// OBJECT DECOMPOSE
+// objects.splice(-1); // retirer le calque supérieur du crabe - trouver une autre solution car celle ci est nulle
+// this.canvas.add.apply(this.canvas, objects);
+// this.canvas.renderAll();
 
 // TEST GROUPER LES OBJECTS
 // this.group = new fabric.Group(this.canvas._objects);
@@ -140,4 +196,22 @@ export default class extends Controller {
 //   alert('yooo')
 //   console.log(obj)
 //   this.#displaySettings(obj)
+// }
+
+// modifier toutes les ailes des oiseaux
+// tous les bleus cians => vert clair (on peut accéder à tous les éléments d'une couleur)
+// load le colibri => générer un bouton pour sélectionner le colibri, puis des boutons dela forme de la forme pour sélectionner chaque élément du colibri
+// à l'import du svg, itérer sur chaque sub-shape pour créer autant de bouton qu'il y a de sub-shapes
+// set active object chaque sous forme sur clic de la sub-shape
+
+
+/////////
+// this.shapeCanvas = new fabric.Canvas('shape-canvas');
+// fabric.loadSVGFromString(event.target.innerHTML, this.#loadSVGInMainCanvas.bind(this));
+// #loadSVGInSaveCanvas(objects,options){
+//   this.actualObj = fabric.util.groupSVGElements(objects, options);
+//   this.shapeCanvas.add(this.actualObj).renderAll();
+//   this.actualObj.scaleToHeight(this.shapeCanvas.height/2); // Scales it down to half the size of the canvas
+//   this.actualObj.scaleToWidth(this.shapeCanvas.width/2); // Scales it down to half the size of the canvas
+//   this.actualObj.center();
 // }
