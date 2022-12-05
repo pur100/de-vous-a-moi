@@ -1,5 +1,4 @@
 class PatternsController < ApplicationController
-
   # def new
   #   @pattern = Pattern.new
   # end
@@ -12,6 +11,12 @@ class PatternsController < ApplicationController
     @pattern.user = current_user
     @pattern.save
     redirect_to pattern_path(@pattern)
+  end
+
+  def update
+    @pattern = Pattern.find(params[:id])
+    @pattern.json = params[:json] # We recover the json from the pattern.js controller (done with Ajax fetch)
+    @pattern.save
   end
 
   def show
