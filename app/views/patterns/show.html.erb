@@ -5,7 +5,7 @@
 
   <%# <div class="main-menu"> %>
   <div class="espace-créa">
-    <div data-controller="pattern" style="display: flex;">
+    <div data-controller="pattern" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>" style="display: flex;">
       <canvas id="canvas" width="500" height="500"></canvas>
       <div class="main-menu">
         <%= inline_svg_tag "colibri.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
@@ -14,12 +14,16 @@
         <%= inline_svg_tag "crabe.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
         <button data-action="click->pattern#groupSelection" class="button-black">Group All</button>
         <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button>
+        <button data-action="click->pattern#saveCanvas" class="button-black">Save</button>
+        <button data-action="click->pattern#loadCanvas" class="button-black">Load</button>
+        <button data-action="click->pattern#undo" class="button-black">Undo</button>
+        <button data-action="click->pattern#redo" class="button-black">Redo</button>
         <ul>
           <% @color_range.each do |color| %>
              <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color%>; color: <%= color%>" class="btn list-unstyled"> <%= color%></li>
           <% end %>
         </ul>
-        </div>
+      </div>
     </div>
   </div>
 
@@ -29,3 +33,5 @@
       }
     </style>
 </div>
+
+<% console %>
