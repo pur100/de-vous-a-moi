@@ -1,0 +1,19 @@
+.button-sidebar {
+  width: 40px;
+  padding-bottom: 10px;
+  animation: rotation 1s linear 0s infinite;
+  animation-play-state: paused;
+
+}
+
+.button-sidebar:hover,
+.button-sidebar:focus {
+  color: rgba(0, 0, 0, .85);
+  background-color: #e8e8e8;
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(90deg)
+  }
+}
