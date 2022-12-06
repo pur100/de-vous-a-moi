@@ -1,6 +1,6 @@
 
-
-<div data-controller="pattern" id="main-menu" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
+<%# <div class="wrapper-all"> %>
+  <div data-controller="pattern" style="display: flex;" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
    <canvas id="canvas" width="500" height="500" position="absolute" ></canvas>
    <div id="shape-block">
   <h3 class="p-3"> Mes formes </h3>
@@ -16,16 +16,13 @@
     <button data-action="click->pattern#clone" class="button-black">Clone</button>
 
   <%= render "shared/collapsible_sidebar", class:"espace-créa" %>
-
-  <h3> Couleurs de fond disponibles </h3>
-  <ul>
-    <% @color_range.each do |color| %>
-      <li data-action="click->pattern#setBackgroundColor" style="background-color: <%=color%>; color: <%= color%>" class="btn list-unstyled"> <%= color%></li>
-    <% end %>
-  </ul>
+  <%= render "shared/collapsible_myforms",class:"forms"  %>
+<%# </div> %>
 
 
-</div>
+<%# <div id="shape-block"> %>
+  <%# <h3> Mes formes </h3> %>
+<%# </div> %>
 
 
 

@@ -1,64 +1,55 @@
 @import "components/button-sidebar";
 
+// .wrapper-all {
+//   display:flex ;
+  .canvas-container:has(canvas){
+    position: fixed!important;
+    left: 48%!important;
+    top: 20%!important;
+
+  }
+  .canvas-container{
+  position: fixed;
+  left: 48%;
+  top: 20%;
+
+}
 .generator {
   width: 100%;
-  // margin-top: 10%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
 }
 
-#main-menu {
-  // display: flex;
-  // align-items: center;
-  ul {
-    margin: 10px;
-    padding: 10px;
-  }
-  li {
-    margin: 10px;
-  }
 
-  // button {
+
+// button {
   //   width: 150px;
   //   text-align: center;
   //   margin: 10px;
 
   // }
   #canvas {
-    width: 500px;
-    height: 500px;
-    position: fixed;
-    top: 20%;
-    left: 45%;
+    // position: fixed;
+    // top: 20%;
+    // left: 45%;
     background-color: white;
     user-select: none;
 
     .canvas-container {
-
-    //   width: 500px;
-    // height: 500px;
-    // // position: fixed;
-    // left: 500px;
-    // top: 159px;
-    // user-select: none;
-    // position: relative;
-    // user-select: none;
-    // margin-right: -1162px;
-    // margin-left: -220px;
-    // margin-top: 116px;
     background-color: white;
   }
   }
-}
 
-.espace-créa {
+
+  .espace-créa {
   width: 70%;
   border-left: 3px solid black;
-  // height: 100%;
   padding: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: start;
 }
+
+// }
