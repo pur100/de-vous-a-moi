@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("connectéd");
+    console.log("connecté");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas('canvas');
     this.#loadCanvas() // On load le canvas s'il a déjà été sauvegardé
@@ -19,6 +19,11 @@ export default class extends Controller {
     this.history = [] // history will store all the json files when we hit the save button
     this.index = -1 // index is the number of element of history. will be updated when we hit save as well
     this.undo_index = -1 // we will decrement undo_index each time we hit undo and increment it each time we hit redo
+    this.canvas.on("object:modified", this.#test.bind(this))
+  }
+
+  #test() {
+    console.log("modified")
   }
 
   setActiveLayer(event) {
