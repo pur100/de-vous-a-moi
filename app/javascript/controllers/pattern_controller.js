@@ -209,11 +209,29 @@ export default class extends Controller {
     this.canvas.renderAll();
     this.count += 1;
     // afficher les formes et sous-formes
-    const actions = document.getElementById("shape-block");
+
+    const liHtml = `
+      <li class="mb-1">
+        <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#yourshapes-collapse-${this.count}" aria-expanded="false">
+          <h4 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';" class="title-shape">FORME-${this.count}</h4>
+        </button>
+        <div class="collapse" id="yourshapes-collapse-${this.count}">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <div class="title-layer" id="shape-block-${this.count}">
+            </div>
+          </ul>
+        </div>
+      </li>
+    `
+    const shapesContainer =  document.getElementById('shapes-container');
+    shapesContainer.insertAdjacentHTML("beforeend", liHtml);
+
+
+    const actions = document.getElementById(`shape-block-${this.count}`);
     this.obj.name = `FORME-${this.count}`;
     actions.insertAdjacentHTML(
       "beforeend",
-      `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${this.obj.name}</h3>`
+      `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';"></h3>`
     );
     let i = 0;
     this.obj._objects.forEach((path) => {
