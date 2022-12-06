@@ -51,12 +51,15 @@ h4 {
   font-family: 'Raleway', "sans-serif";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
-
+  font-size: 16px;
+  line-height: 20px;
+  text-align: start;
   /* C_2 */
 
   color: #888888;
+  &:hover{
+    color: black;
+  }
 }
 
 p {
