@@ -10,7 +10,7 @@ export default class extends Controller {
   };
 
   connect() {
-    console.log("connecté");
+    console.log("connectéd");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas("canvas");
     this.#loadCanvas(); // On load le canvas s'il a déjà été sauvegardé
@@ -125,22 +125,23 @@ export default class extends Controller {
   saveCanvas() {
     // convert canvas to a json string
     this.json = JSON.stringify(this.canvas.toJSON());
+    // we convert the canvas to an image as a base 64 string
+    let img_url = this.canvas.toDataURL("png");
     // Create a new formdata to send json to rails via AJAX fetch
     const formData = new FormData();
     // We give our json to formdata
     formData.append("json", this.json);
+    // We give our image to formdata
+    formData.append("image_url", img_url);
     // Token for security
     const csrfToken = document.getElementsByName("csrf-token")[0].content;
 
-    // On vient fetcher l'url pattern/id/update en lui donnant le this.json en body pour lé récupérer dans le controller rails
+    // On vient fetcher l'url pattern/id/update en lui donnant le formdata en body pour lé récupérer dans le controller rails
     fetch(this.updateValue, {
       method: "PATCH", // Patch method to update our pattern
       headers: { Accept: "application/json", "X-CSRF-Token": csrfToken },
       body: formData, // we give the formdata declared above to the fetch body -> rails side, we can retrieve the info with params[:json]
-    }).then((response) => response.json());
-    // .then((data) => {
-    //   console.log(data)
-    // })
+    });
   }
 
   addAShape(event) {

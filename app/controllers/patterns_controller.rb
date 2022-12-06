@@ -18,6 +18,8 @@ class PatternsController < ApplicationController
   def update
     @pattern = Pattern.find(params[:id])
     @pattern.json = params[:json] # We recover the json from the pattern.js controller (done with Ajax fetch)
+    @pattern.image_url = params[:image_url]
+
     @pattern.save
   end
 
