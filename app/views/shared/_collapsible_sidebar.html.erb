@@ -18,8 +18,9 @@
             </button>
             <% @color_ranges.each do |color| %>
               <% if color.color4.nil? %>
-                <div class="collapse" id="trois-c-collapse">
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <div class="color-generator">
+                <div class="collapse ranges-colors" id="trois-c-collapse">
+                  <ul id="range" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <div class="color-generator" data-action="click->pattern#selectedColor">
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
@@ -29,6 +30,7 @@
                 </div>
               <% end %>
             <% end %>
+            <%# </div> %>
             </li>
           </ul>
           <ul class="list-unstyled ps-0">
@@ -102,6 +104,7 @@
             <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#sept-c-collapse" aria-expanded="false">
               <h4>7 couleurs</h4>
             </button>
+
             <% @color_ranges.each do |color| %>
               <% if color.color7.nil? == false %>
                 <div class="collapse" id="sept-c-collapse">
@@ -119,6 +122,7 @@
                 </div>
               <% end %>
             <% end %>
+
             </li>
           </ul>
         </div>
