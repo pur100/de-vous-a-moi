@@ -95,7 +95,8 @@
 
   <div class="create-inspirate">
     <%= image_tag "homepage/bar.svg", class:"bar" %>
-    <%= link_to "Créer",  patterns_path, data: {turbo_method: :post}, class: "button-black" %>
+    <a class="button-black" data-bs-toggle="modal" data-bs-target="#exampleModal" >Créer</a>
+    <%= render "shared/button_create" %>
     <%= image_tag "homepage/bar.svg", class:"bar" %>
     <%= link_to "Find inspiration", patterns_path, class: "button-white" %>
     <%= image_tag "homepage/bar.svg", class:"bar" %>
