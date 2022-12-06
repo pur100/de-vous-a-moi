@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_01_100141) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_093820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_100141) do
     t.bigint "color_range_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "json"
     t.index ["color_range_id"], name: "index_patterns_on_color_range_id"
     t.index ["user_id"], name: "index_patterns_on_user_id"
   end
