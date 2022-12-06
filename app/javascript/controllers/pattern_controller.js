@@ -46,7 +46,7 @@ export default class extends Controller {
         that.canvas.renderAll();
       } else {
         object._objects.forEach((path) => {
-          if (path.id === event.currentTarget.innerText) {
+          if (path.id === event.currentTarget.innerText || `c-${path.id}` === event.currentTarget.id) {
             that.canvas.setActiveObject(path);
             that.canvas.renderAll();
           }
@@ -59,7 +59,7 @@ export default class extends Controller {
     const that = this
     that.canvas.getObjects().forEach(function(object) {
       object._objects.forEach((path) => {
-        if (path.id === event.currentTarget.innerText) {
+        if (path.id === event.currentTarget.innerText || `c-${path.id}` === event.currentTarget.id) {
           path.set({ stroke: "#FFFFFF" });
           that.canvas.renderAll();
         }
@@ -71,7 +71,7 @@ export default class extends Controller {
     const that = this
     that.canvas.getObjects().forEach(function(object) {
       object._objects.forEach((path) => {
-        if (path.id === event.currentTarget.innerText) {
+        if (path.id === event.currentTarget.innerText || `c-${path.id}` === event.currentTarget.id) {
           path.set({ stroke: "" });
           that.canvas.renderAll();
         }
@@ -180,26 +180,38 @@ export default class extends Controller {
 
   #loadSVG(objects, options) {
     // load SVG
-    this.obj = fabric.util.groupSVGElements(objects, options);
+    this.obj = fabric.util.groupSVGElements(objects, options= {cornerStyle: "circle"});
+    // this.obj.#cornerStyle('circle');
     this.canvas.add(this.obj).renderAll();
     this.obj.scaleToHeight(this.canvas.height/2); // Scales it down to half the size of the canvas
     this.obj.scaleToWidth(this.canvas.width/2); // Scales it down to half the size of the canvas
     this.obj.center();
-
     this.count += 1;
     // afficher les formes et sous-formes
     const actions = document.getElementById('shape-block');
-    // const shapeRender = 
-    this.obj.name = `Forme-${this.count}`;
+    // const shapeRender =
+    this.obj.name = `FORME-${this.count}`;
     actions.insertAdjacentHTML("beforeend", `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${this.obj.name}</h3>`);
     let i = 0;
     this.obj._objects.forEach((path) => {
       path.id = `Forme-${this.count}-layer-${i}`;
-      actions.insertAdjacentHTML("beforeend", `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-layer" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${path.id}</div>`)
+      actions.insertAdjacentHTML("beforeend", `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-layer d-none" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${path.id}</div>`)
+      actions.insertAdjacentHTML("beforeend", `<canvas data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' id="c-${path.id}" width="100" height="50"></canvas`);
+      let canvas = new fabric.StaticCanvas(`c-${path.id}`);
+      let shapePath = new fabric.Path(path.d);
+      canvas.add(shapePath);
+      shapePath.scaleToHeight(canvas.height);
+      shapePath.scaleToWidth(canvas.width/4); // Scales it down to half the size of the canvas
+      shapePath.center();
       i++;
     })
   };
 }
+
+// insérer une image issue du svg
+
+
+
 
 // OBJECT DECOMPOSE
 // objects.splice(-1); // retirer le calque supérieur du crabe - trouver une autre solution car celle ci est nulle
