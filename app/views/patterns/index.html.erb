@@ -58,6 +58,11 @@
                     <% if pattern.photo.attached? %>
                       <div class="child bg-one" style="background: url('<%= cl_image_path pattern.photo.key %>'); background-size: cover;">
                       </div>
+                    <% else %>
+                      <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>" class="child bg-one" style="background-image: url('<%=pattern.image_url%>')">
+                        <div class="box-black">
+                        </div>
+                      </div>
                     <% end %>
                   </div>
 
