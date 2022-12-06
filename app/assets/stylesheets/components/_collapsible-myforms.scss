@@ -2,8 +2,19 @@
   height: -webkit-fill-available;
   overflow-x: auto;
   overflow-y: hidden;
-  width: 15vw;
+  width: 20vw;
   height: 100vw;
   background-color: white;
   border-right: 1px solid #888888;
+  .title-shape{
+    padding: 10px;
+    font-size: 20px;
+  }
+  .title-layer {
+    margin-left: 20px;
+    color: #888888;
+    &:hover{
+      color: black;
+    }
+  }
 }

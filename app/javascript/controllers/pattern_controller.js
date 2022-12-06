@@ -170,12 +170,13 @@ export default class extends Controller {
     this.count += 1;
     // afficher les formes et sous-formes
     const actions = document.getElementById('shape-block');
+    // const shapeRender = 
     this.obj.name = `Forme-${this.count}`;
-    actions.insertAdjacentHTML("beforeend", `<span class="p-3"> -------------- </span> <br> <h2 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="p-3" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${this.obj.name}</h2>`);
+    actions.insertAdjacentHTML("beforeend", `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${this.obj.name}</h3>`);
     let i = 0;
     this.obj._objects.forEach((path) => {
       path.id = `Forme-${this.count}-layer-${i}`;
-      actions.insertAdjacentHTML("beforeend", `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="px-3" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${path.id}</div>`)
+      actions.insertAdjacentHTML("beforeend", `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-layer" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${path.id}</div>`)
       i++;
     })
   };
