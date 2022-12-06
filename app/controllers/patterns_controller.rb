@@ -8,6 +8,8 @@ class PatternsController < ApplicationController
 
   def create
     @pattern = Pattern.new
+    name = params["name"]
+    @pattern.name = name
     @pattern.user = current_user
     @pattern.save
     redirect_to pattern_path(@pattern)
@@ -31,4 +33,11 @@ class PatternsController < ApplicationController
   def dashboard
     @pattern = Pattern.where(user: current_user)
   end
+
+  private
+
+  def patterns_params
+    params.require(:pattern).permit("name")
+  end
+
 end

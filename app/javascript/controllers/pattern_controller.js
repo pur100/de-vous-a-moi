@@ -24,8 +24,8 @@ export default class extends Controller {
 
   clone() {
     let object = fabric.util.object.clone(this.canvas.getActiveObject());
-    object.set("top", object.top + 25);
-    object.set("left", object.left + 25);
+    object.set("top", object.top+100);
+    object.set("left", object.left+100);
     this.canvas.add(object);
     this.#autoSave();
   }
