@@ -10,7 +10,7 @@ export default class extends Controller {
   };
 
   connect() {
-    console.log("connectéd");
+    console.log("connecté");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas("canvas");
     this.#loadCanvas(); // On load le canvas s'il a déjà été sauvegardé
@@ -184,12 +184,14 @@ export default class extends Controller {
   clearCanvas() {
     alert("You are going to delete the Canvas, are you sure ?");
     this.canvas.clear();
+    this.canvas.renderAll();
     this.#autoSave();
   }
 
   removeSelection() {
     alert("You are going to delete the selected shape, are you sure ?");
     this.canvas.remove(this.canvas.getActiveObject());
+    this.canvas.renderAll();
     this.#autoSave();
   }
 
@@ -200,10 +202,11 @@ export default class extends Controller {
       (options = { cornerStyle: "circle" })
     );
     // this.obj.#cornerStyle('circle');
-    this.canvas.add(this.obj).renderAll();
+    this.canvas.add(this.obj);
     this.obj.scaleToHeight(this.canvas.height / 2); // Scales it down to half the size of the canvas
     this.obj.scaleToWidth(this.canvas.width / 2); // Scales it down to half the size of the canvas
     this.obj.center();
+    this.canvas.renderAll();
     this.count += 1;
     // afficher les formes et sous-formes
     const actions = document.getElementById("shape-block");
@@ -226,8 +229,8 @@ export default class extends Controller {
       let canvas = new fabric.StaticCanvas(`c-${path.id}`);
       let shapePath = new fabric.Path(path.d);
       canvas.add(shapePath);
-      shapePath.scaleToHeight(canvas.height);
-      shapePath.scaleToWidth(canvas.width / 4); // Scales it down to half the size of the canvas
+      shapePath.scaleToHeight(canvas.height / 1.5);
+      shapePath.scaleToWidth(canvas.width / 3);
       shapePath.center();
       i++;
     });
