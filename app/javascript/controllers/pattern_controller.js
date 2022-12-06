@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("connecté");
+    console.log("connectéd");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas('canvas');
     this.#loadCanvas() // On load le canvas s'il a déjà été sauvegardé
@@ -19,11 +19,23 @@ export default class extends Controller {
     this.history = [] // history will store all the json files when we hit the save button
     this.index = -1 // index is the number of element of history. will be updated when we hit save as well
     this.undo_index = -1 // we will decrement undo_index each time we hit undo and increment it each time we hit redo
-    this.canvas.on("object:modified", this.#test.bind(this))
+    this.canvas.on("object:modified", this.#autoSave.bind(this)) // we set an envent listenner on object:modified so that each time a modification is done, we call private function autosave
   }
 
-  #test() {
-    console.log("modified")
+  clone() {
+    let object = fabric.util.object.clone(this.canvas.getActiveObject());
+    object.set("top", object.top+25);
+    object.set("left", object.left+25);
+    this.canvas.add(object);
+    this.#autoSave()
+  }
+
+  #autoSave() {
+    console.log("autosaved")
+    this.json = JSON.stringify( this.canvas.toJSON() );
+    this.history.push(this.json)
+    this.index++
+    this.undo_index = this.index
   }
 
   setActiveLayer(event) {
@@ -97,9 +109,6 @@ export default class extends Controller {
   saveCanvas() {
     // convert canvas to a json string
     this.json = JSON.stringify( this.canvas.toJSON() );
-    this.history.push(this.json)
-    this.index++
-    this.undo_index = this.index
     // Create a new formdata to send json to rails via AJAX fetch
     const formData = new FormData();
     // We give our json to formdata
@@ -122,6 +131,7 @@ export default class extends Controller {
   addAShape(event) {
     // On vient chercher le svg cliqué grace au event.target.innerHTML
     fabric.loadSVGFromString(event.target.innerHTML, this.#loadSVG.bind(this));
+    this.#autoSave()
   }
 
   changeShapeColor(event) {
@@ -130,12 +140,14 @@ export default class extends Controller {
     let color = event.target.innerHTML;
     activ_object.set({ fill: color });
     this.canvas.renderAll();
+    this.#autoSave()
   }
 
   setBackgroundColor(event) {
     let color = event.target.innerHTML;
     this.canvas.set({ backgroundColor: color });
     this.canvas.renderAll();
+    this.#autoSave()
   }
 
   groupSelection() {
@@ -157,11 +169,13 @@ export default class extends Controller {
   clearCanvas() {
     alert("You are going to delete the Canvas, are you sure ?");
     this.canvas.clear();
+    this.#autoSave()
   }
 
   removeSelection(){
     alert("You are going to delete the selected shape, are you sure ?");
     this.canvas.remove(this.canvas.getActiveObject());
+    this.#autoSave()
   }
 
   #loadSVG(objects, options) {

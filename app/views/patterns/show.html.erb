@@ -2,15 +2,18 @@
 
 <div data-controller="pattern" id="main-menu" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
    <canvas id="canvas" width="500" height="500" position="absolute" ></canvas>
+   <div id="shape-block">
+  <h3 class="p-3"> Mes formes </h3>
+</div>
      <h3> Actions </h3>
     <button data-action="click->pattern#groupSelection" class="button-black">Select all</button>
     <%# <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button> %>
     <button data-action="click->pattern#saveCanvas" class="button-black">Save</button>
-    <button data-action="click->pattern#loadCanvas" class="button-black">Load</button>
     <button data-action="click->pattern#undo" class="button-black">Undo</button>
     <button data-action="click->pattern#redo" class="button-black">Redo</button>
     <button data-action="click->pattern#clearCanvas" class="button-black">Clear all</button>
     <button data-action="click->pattern#removeSelection" class="button-black">Delete selection</button>
+    <button data-action="click->pattern#clone" class="button-black">Clone</button>
 
   <%= render "shared/collapsible_sidebar", class:"espace-créa" %>
 
@@ -24,9 +27,7 @@
 
 </div>
 
-<div id="shape-block">
-  <h3 class="p-3"> Mes formes </h3>
-</div>
+
 
 
 <style>
