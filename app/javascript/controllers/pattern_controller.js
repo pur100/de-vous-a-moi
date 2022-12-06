@@ -36,6 +36,11 @@ export default class extends Controller {
     this.history.push(this.json)
     this.index++
     this.undo_index = this.index
+    document.getElementById('canva-bg').style.backgroundImage = `url(${this.canvas.toDataURL('png')})`; // change the background image with the image created from the canvas
+    // console.log("index")
+    // console.log(this.index)
+    // console.log("index")
+    // console.log(this.undo_index)
   }
 
   setActiveLayer(event) {
@@ -189,7 +194,7 @@ export default class extends Controller {
     this.count += 1;
     // afficher les formes et sous-formes
     const actions = document.getElementById('shape-block');
-    // const shapeRender = 
+    // const shapeRender =
     this.obj.name = `Forme-${this.count}`;
     actions.insertAdjacentHTML("beforeend", `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${this.obj.name}</h3>`);
     let i = 0;
