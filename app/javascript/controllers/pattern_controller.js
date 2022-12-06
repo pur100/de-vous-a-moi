@@ -4,13 +4,15 @@ import { fabric } from "fabric";
 // Save each shape as well
 
 export default class extends Controller {
+  static targets = ["displayColor", "displayBackgroundColor"];
+
   static values = {
     update: String, // updateValue is the link to pattern/id/update used in save function
     json: String, // jsonValue is pattern.json
   };
 
   connect() {
-    console.log("connectéd");
+    console.log("connecté");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas("canvas");
     this.#loadCanvas(); // On load le canvas s'il a déjà été sauvegardé
@@ -20,6 +22,13 @@ export default class extends Controller {
     this.index = -1; // index is the number of element of history. will be updated when we hit save as well
     this.undo_index = -1; // we will decrement undo_index each time we hit undo and increment it each time we hit redo
     this.canvas.on("object:modified", this.#autoSave.bind(this)); // we set an envent listenner on object:modified so that each time a modification is done, we call private function autosave
+  }
+
+  selectedColor(event) {
+    console.log("in color selector");
+    this.displayColorTarget.innerHTML = event.currentTarget.innerHTML;
+    this.displayBackgroundColorTarget.innerHTML = event.currentTarget.innerHTML;
+    console.log(event.currentTarget.innerHTML);
   }
 
   clone() {
@@ -223,10 +232,9 @@ export default class extends Controller {
           </ul>
         </div>
       </li>
-    `
-    const shapesContainer =  document.getElementById('shapes-container');
+    `;
+    const shapesContainer = document.getElementById("shapes-container");
     shapesContainer.insertAdjacentHTML("beforeend", liHtml);
-
 
     const actions = document.getElementById(`shape-block-${this.count}`);
     this.obj.name = `FORME-${this.count}`;

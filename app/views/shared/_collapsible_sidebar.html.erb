@@ -20,7 +20,7 @@
               <% if color.color4.nil? %>
                 <div class="collapse" id="trois-c-collapse">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <div class="color-generator">
+                    <div class="color-generator" data-action="click->pattern#selectedColor">
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
@@ -40,7 +40,7 @@
               <% if color.color4.nil? == false && color.color5.nil? %>
                 <div class="collapse" id="quatre-c-collapse">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <div class="color-generator">
+                    <div class="color-generator" data-action="click->pattern#selectedColor">
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
@@ -61,7 +61,7 @@
               <% if color.color4.nil? == false && color.color5.nil? == false && color.color6.nil? %>
                 <div class="collapse" id="cinq-c-collapse">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <div class="color-generator">
+                    <div class="color-generator" data-action="click->pattern#selectedColor">
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
@@ -83,7 +83,7 @@
               <% if color.color4.nil? == false && color.color5.nil? == false && color.color6.nil? == false && color.color7.nil? %>
                 <div class="collapse" id="six-c-collapse">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <div class="color-generator">
+                    <div class="color-generator" data-action="click->pattern#selectedColor">
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
@@ -106,7 +106,7 @@
               <% if color.color7.nil? == false %>
                 <div class="collapse" id="sept-c-collapse">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <div class="color-generator">
+                    <div class="color-generator" data-action="click->pattern#selectedColor">
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
                       <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
@@ -149,10 +149,7 @@
         </button>
         <div class="collapse" id="orders-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <div class="background-generator">
-             <% @color_range_array.each do |color| %>
-            <li data-action="click->pattern#setBackgroundColor" style="background-color: <%=color%>; color: <%= color%>; white-space: nowrap; overflow: hidden; margin:0;" class="btn list-unstyled"> <%= color%></li>
-          <% end %>
+          <div class="background-generator" data-pattern-target="displayBackgroundColor">
           </div>
         </ul>
       </li>
