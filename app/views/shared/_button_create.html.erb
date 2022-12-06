@@ -13,28 +13,16 @@
           <div class="mb-3">
             <label for="name" class="col-form-label">Nom de votre motif</label>
             <input type="text" class="form-control" name="name" id="name">
-            <input type="submit" value="Subscribe!">
+            <input type="submit" value="Commencer" class="button-black">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <a  class="button-white" data-bs-dismiss="modal">Fermer</a>
-        <%= link_to "Commencer",  patterns_path, data: {turbo_method: :post}, class: "button-black" %>
       </div>
     </div>
   </div>
 </div>
 
 
-<script>
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
-</script>
- <!-- Modal -->
+<!-- Modal -->
