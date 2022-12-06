@@ -2,22 +2,24 @@
  <div id="main-2">
   <ul class="list-unstyled ps-0">
     <li class="mb-1">
-      <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#forms-collapse" aria-expanded="true">
+      <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#forms-collapse" aria-expanded="false">
         <h4>Mes formes</h4>
       </button>
-      <div class="collapse show" id="forms-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <div id="shape-block">
-            <li class='mb-1'>
-              <button class="title-shape d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#shape-collapse" aria-expanded="true">
-                <h3 class='title-shape'>
-                </h3>
-              </button>
-              <div class="collapse show" id="shape-collapse">
-                <p class='title-layer'></p>
-              </div>
-            </li>
-          </div>
+      <div class="collapse" id="forms-collapse">
+        <ul class="list-unstyled ps-0" id="shapes-container">
+          <%# <!--for each shape block selected--->
+          <li class="mb-1">
+            <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#yourshapes-collapse" aria-expanded="false">
+              <h4 class="title-shape">forme1</h4> <!--forme1--->
+            </button>
+            <div class="collapse" id="yourshapes-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <div class="title-layer" id="shape-block">
+                  <!--for each forme set all layers-->
+                </div>
+              </ul>
+            </div> %>
+          </li>
         </ul>
       </div>
     </li>

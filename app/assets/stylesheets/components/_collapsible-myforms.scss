@@ -8,14 +8,24 @@
   background-color: white;
   border-right: 1px solid #888888;
   .title-shape{
-    padding: 10px;
-    font-size: 20px;
-  }
-  .title-layer {
-    margin-left: 20px;
+    font-family: 'Raleway', "sans-serif";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: start;
+    /* C_2 */
+
     color: #888888;
     &:hover{
       color: black;
     }
+  }
+  .title-layer {
+    font-family: 'Raleway', "sans-serif";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #888888;
   }
 }
