@@ -29,7 +29,7 @@ class PatternsController < ApplicationController
     @shape_files = ShapeFile.first
     @shape_losange = ShapeFile.last
     # Envoi de color range dans la show pour pouvoir jouer avec les couleurs des calques de svg
-    @color_range = [ColorRange.first.color1, ColorRange.first.color2, ColorRange.first.color3, ColorRange.first.color4]
+    @color_ranges = ColorRange.all
   end
 
   def dashboard
