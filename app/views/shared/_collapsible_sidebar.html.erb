@@ -22,14 +22,20 @@
       </li>
       <li class="mb-1">
         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          <h4>Format</h4>
+          <h4>Action</h4>
         </button>
         <div class="collapse" id="dashboard-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Weekly</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Monthly</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Annually</a></li>
+            <div class="action-generator">
+              <button data-action="click->pattern#groupSelection" class="button-white">Select all</button>
+              <%# <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button> %>
+              <button data-action="click->pattern#saveCanvas" class="button-white">Save</button>
+              <button data-action="click->pattern#loadCanvas" class="button-white">Load</button>
+              <button data-action="click->pattern#undo" class="button-white">Undo</button>
+              <button data-action="click->pattern#redo" class="button-white">Redo</button>
+              <button data-action="click->pattern#clearCanvas" class="button-white">Clear all</button>
+              <button data-action="click->pattern#removeSelection" class="button-white">Delete selection</button>
+            </div>
           </ul>
         </div>
       </li>
@@ -38,13 +44,13 @@
           <h4>Couleur de fond</h4>
         </button>
         <div class="collapse" id="orders-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Processed</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Shipped</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Returned</a></li>
-          </ul>
-        </div>
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <div class="background-generator">
+             <% @color_range.each do |color| %>
+            <li data-action="click->pattern#setBackgroundColor" style="background-color: <%=color%>; color: <%= color%>; white-space: nowrap; overflow: hidden; margin:0;" class="btn list-unstyled"> <%= color%></li>
+          <% end %>
+          </div>
+        </ul>
       </li>
       <li class="border-top my-3"></li>
       <li class="mb-1">
