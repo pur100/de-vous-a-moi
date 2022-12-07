@@ -1,12 +1,27 @@
 
 <%# <div class="wrapper-all"> %>
 
+
 <div id="canva-bg" data-controller="pattern" style="display: flex;" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
 
-    <canvas id="canvas" width="500" height="500" position="absolute" ></canvas>
+    <canvas id="canvas" width="600" height="600" position="absolute" ></canvas>
+
+
 
   <%= render "shared/collapsible_sidebar", class:"espace-créa" %>
   <%= render "shared/collapsible_myforms",class:"forms"  %>
+  <div data-pattern-target="displayColor" ></div>
+  <div class="action-generator">
+  <button data-action="click->pattern#groupSelection" class="button-white">Select all</button>
+  <%# <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button> %>
+  <button data-action="click->pattern#saveCanvas" class="button-white">Save</button>
+  <button data-action="click->pattern#loadCanvas" class="button-white">Load</button>
+  <button data-action="click->pattern#undo" class="button-white">Undo</button>
+  <button data-action="click->pattern#redo" class="button-white">Redo</button>
+  <button data-action="click->pattern#clearCanvas" class="button-white">Clear all</button>
+  <button data-action="click->pattern#removeSelection" class="button-white">Delete selection</button>
+  <button data-action="click->pattern#clone" class="button-white">Clone</button>
+</div>
 </div>
 
 
@@ -24,7 +39,7 @@ border: 1px solid black;
 }
 
 canvas {
-border: 1px solid black;
+/* border: 1px solid black; */
 }
 
 /* #shape-block{

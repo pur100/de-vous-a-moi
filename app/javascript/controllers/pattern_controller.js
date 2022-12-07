@@ -32,7 +32,7 @@ export default class extends Controller {
     // on lui donne la valeur de la palette de couleur sélectionnée
     this.displayColorTarget.innerHTML = event.currentTarget.innerHTML;
     // on ajoute la bonne classe maintenant car si elle est en dur dans le html c'est caca
-    this.displayColorTarget.classList.add("color-generator");
+    this.displayColorTarget.classList.add("background-generator");
     // on donne la même palette pour la background color. On vient juste modifier la data action pour
     // que lorsque l'on clique dessus ce soit le background color qui soit setté
     let background_color_HTML = event.currentTarget.innerHTML.replace(
@@ -41,7 +41,7 @@ export default class extends Controller {
     );
     this.displayBackgroundColorTarget.innerHTML = background_color_HTML;
     // on ajoute la bonne classe maintenant car si elle est en dur dans le html c'est caca
-    this.displayBackgroundColorTarget.classList.add("background-generator");
+    this.displayBackgroundColorTarget.classList.add("color-generator");
   }
 
   randomColor() {
