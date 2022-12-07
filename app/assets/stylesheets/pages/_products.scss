@@ -1,0 +1,224 @@
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: inline-flex;
+  align-content: space-between;
+
+}
+
+.pattern-product{
+  margin-top: 7%;
+  margin-left: 4%;
+}
+.card-product {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  margin-top: 12%;
+  margin-left: 5%;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  // background: aquamarine;
+
+
+
+  h2 {
+    font-size: 16px;
+    margin: 0;
+  }
+
+}
+
+.parent-product {
+  border-radius: 0.5rem 0.5rem 0 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  // border: 1px solid blue;
+  overflow: hidden;
+  position: relative;
+  // float: left;
+  display: inline-block;
+  cursor: pointer;
+
+}
+
+.child-product {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+.parent-product:hover .child-product, .parent-product:focus .child-product {
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.parent-product:hover .child-product:before, .parent-product:focus .child-product:before {
+  display: block;
+
+}
+
+.child-product:before {
+  content: "";
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.box-black {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+  &:hover {
+    opacity: 0;
+  }
+}
+
+.card-product-desc {
+
+  padding: 1rem;
+  color: #9397ad;
+  top: -15px;
+  height: 92px;
+  position: relative;
+  .card-product-desc-last .fa-solid{
+    gap: 1rem;
+    position: absolute;
+    right: 16px;
+    top: 61px;
+    font-size: 22px;
+    color: white;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 3px;
+    &:hover{
+      background: #888888;;
+      color: white;
+      }
+    }
+
+  .card-product-desc-first {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+
+}
+#overlay {
+  // background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
+
+    .card-product-overlay {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-radius: 0.5rem;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      background-color: white;
+      padding: 30px;
+    }
+    .parent-product-overlay {
+      border-radius: 0.5rem;
+      height: 416px;
+      width: 100%;
+      background-size: cover;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+
+    }
+
+
+  .card-product-desc-overlay {
+    padding: 1rem;
+    color: #9397ad;
+    position: relative;
+    .card-product-desc-last-overlay img{
+      gap: 1rem;
+      position: absolute;
+      right: 26px;
+      top: -26px;
+      height: 30px;
+      &:hover{
+        filter: brightness(0.5);
+        }
+      }
+
+    .card-product-desc-first-overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      position: relative;
+    }
+
+    .card-product-desc-last-overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      a {
+        margin-top: 10px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.products {
+  width: 45%;
+  margin-top: 12%;
+  height: 60%;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* width: 20px; */
+  // border: 1px solid #888888;
+  /* width: 20%; */
+  padding: 2%;
+  /* display: inline-block; */
+  vertical-align: middle;
+  text-align: center;
+  h1{
+    font-size: 80px;
+    margin-bottom: 20%;
+
+  }
+  .devis{
+    background-color: #e0e0e0;
+    /* overflow: hidden; */
+    /* border: 1px solid #888888; */
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    display: flex;
+    vertical-align: middle;
+    text-align: center;
+    overflow: hidden;
+    /* border: 1px solid #888888; */
+    display: inline-table;
+    border: 2px solid #888888;
+    margin: 8px;
+ }
+}
