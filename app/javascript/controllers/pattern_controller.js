@@ -26,37 +26,43 @@ export default class extends Controller {
     this.canvas.on("object:modified", this.#autoSave.bind(this));
   }
 
-  clone() {
-    // this.canvas.getActiveObject().clone(function (cloned) {
-    //   let _clipboard = cloned;
-    // });
-    // _clipboard.clone(function (clonedObj) {
-    //   this.canvas.discardActiveObject();
-    //   clonedObj.set({
-    //     left: clonedObj.left + 10,
-    //     top: clonedObj.top + 10,
-    //     evented: true,
-    //   });
-    //   if (clonedObj.type === "activeSelection") {
-    //     // active selection needs a reference to the canvas.
-    //     clonedObj.canvas = this.canvas;
-    //     clonedObj.forEachObject(function (obj) {
-    //       this.canvas.add(obj);
-    //     });
-    //     // this should solve the unselectability
-    //     clonedObj.setCoords();
-    //   } else {
-    //     this.canvas.add(clonedObj);
-    //   }
-    //   _clipboard.top += 10;
-    //   _clipboard.left += 10;
-    //   this.canvas.setActiveObject(clonedObj);
-    //   this.canvas.requestRenderAll();
-    // });
-    let object = fabric.util.object.clone(this.canvas.getActiveObject());
-    object.set("top", object.top + 100);
-    object.set("left", object.left + 100);
-    this.canvas.add(object);
+  copy() {
+    const that = this;
+    this.canvas.getActiveObject().clone(function (cloned) {
+      that.clipboard = cloned;
+    });
+  }
+
+  paste() {
+    const that = this;
+    this.clipboard.clone(function (clonedObj) {
+      that.canvas.discardActiveObject();
+      clonedObj.set({
+        left: clonedObj.left + 10,
+        top: clonedObj.top + 10,
+        evented: true,
+      });
+      if (clonedObj.type === "activeSelection") {
+        // active selection needs a reference to the canvas.
+        clonedObj.canvas = that.canvas;
+        const these = that;
+        clonedObj.forEachObject(function (obj) {
+          these.canvas.add(obj);
+        });
+        // this should solve the unselectability
+        clonedObj.setCoords();
+      } else {
+        that.canvas.add(clonedObj);
+      }
+      that.clipboard.top += 10;
+      that.clipboard.left += 10;
+      that.canvas.setActiveObject(clonedObj);
+      that.canvas.renderAll();
+    });
+    // let object = fabric.util.object.clone(this.canvas.getActiveObject());
+    // object.set("top", object.top + 100);
+    // object.set("left", object.left + 100);
+    // this.canvas.add(object);
     this.#autoSave();
     this.#clearMyForms();
     this.#fillMyForms();
@@ -80,19 +86,60 @@ export default class extends Controller {
     this.displayBackgroundColorTarget.classList.add("color-generator");
   }
 
-  randomColor() {
-    let colorArray = this.displayColorTarget.innerText
-      .replace(/#/g, " #")
-      .split(" ")
-      .slice(1);
+  allRandomColor() {
+    let colorArray = this.displayColorTarget.innerText.split("#").slice(1);
     this.canvas.getObjects().forEach((object) => {
       object._objects.forEach((path) => {
-        console.log(path);
-        console.log(colorArray[Math.floor(Math.random() * colorArray.length)]);
-        path.set({
-          fill: colorArray[Math.floor(Math.random() * colorArray.length)],
-        });
+        let randomColorWithoutHashtag =
+          colorArray[Math.floor(Math.random() * colorArray.length)];
+        let randomColor = `#${randomColorWithoutHashtag}`;
+        if (randomColor.trim() === this.canvas.backgroundColor.trim()) {
+          let fakeArray = [];
+          colorArray.forEach((color) => {
+            if (color === randomColorWithoutHashtag) {
+            } else {
+              fakeArray.push(color);
+            }
+          });
+          let newRandomColor =
+            fakeArray[Math.floor(Math.random() * fakeArray.length)];
+          path.set({
+            fill: newRandomColor,
+          });
+        } else {
+          path.set({
+            fill: randomColor,
+          });
+        }
       });
+    });
+    this.canvas.renderAll();
+  }
+
+  selectedShapeRandomColor() {
+    let colorArray = this.displayColorTarget.innerText.split("#").slice(1);
+    this.canvas.getActiveObject()._objects.forEach((path) => {
+      let randomColorWithoutHashtag =
+        colorArray[Math.floor(Math.random() * colorArray.length)];
+      let randomColor = `#${randomColorWithoutHashtag}`;
+      if (randomColor.trim() === this.canvas.backgroundColor.trim()) {
+        let fakeArray = [];
+        colorArray.forEach((color) => {
+          if (color === randomColorWithoutHashtag) {
+          } else {
+            fakeArray.push(color);
+          }
+        });
+        let newRandomColor =
+          fakeArray[Math.floor(Math.random() * fakeArray.length)];
+        path.set({
+          fill: newRandomColor,
+        });
+      } else {
+        path.set({
+          fill: randomColor,
+        });
+      }
     });
     this.canvas.renderAll();
   }

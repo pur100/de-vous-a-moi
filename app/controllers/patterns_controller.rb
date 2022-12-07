@@ -29,7 +29,6 @@ class PatternsController < ApplicationController
     @pattern = Pattern.find(params[:id])
     @pattern.json = params[:json] # We recover the json from the pattern.js controller (done with Ajax fetch)
     @pattern.image_url = params[:image_url]
-
     @pattern.save
   end
 
@@ -49,6 +48,13 @@ class PatternsController < ApplicationController
 
   def products
     @pattern = Pattern.find(params[:pattern_id])
+   end
+
+def destroy
+    @pattern = Pattern.find(params[:id])
+    @pattern.destroy
+    # Redirect to actual page, if problem redirect to rootpath -> home
+    redirect_back(fallback_location: root_path)
   end
 
   private
