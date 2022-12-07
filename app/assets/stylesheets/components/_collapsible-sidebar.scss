@@ -11,7 +11,7 @@
   border-right: 1px solid #888888;
 }
 
-.dropdown-toggle { outline: ; }
+.dropdown-toggle { outline: 0; }
 
 
 .btn-toggle {
@@ -135,30 +135,37 @@
 
 // }
 .ranges-colors{
-  display: inline-grid;
+  display: contents;
 }
 
 #range{
   display: inline-grid;
+  margin-left: 3px;
 }
 
 .color-generator {
   justify-content: center;
   align-items: center;
+  background-color: #e0e0e0;
   overflow: hidden;
   border: 1px solid #888888;
-  padding: 6px;
-  display: inline-block;
+  padding: 3px 6px;
+  margin-bottom: 2px;
+  display: flex;
   vertical-align: middle;
   text-align: center;
+  overflow: hidden;
+  border: 1px solid #888888;
+  display: inline-table;
   ul {
     margin: 0;
   }
   li {
-    flex-shrink: 0;
-    width: 16px;
-    padding: 10px;
-    height: 16px;
+    // flex-shrink: 0;
+    width: 0;
+    padding: 8px;
+    border-radius: 0;
+    height: 0;
     white-space: nowrap;
     overflow: hidden;
     margin: 0;
