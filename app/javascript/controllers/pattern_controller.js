@@ -15,7 +15,7 @@ export default class extends Controller {
     console.log("connectéd");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas("canvas");
-    this.actions = document.getElementById("shape-block");
+    this.shapesContainer = document.getElementById("shapes-container");
     this.#loadCanvas(); // On load le canvas s'il a déjà été sauvegardé
     this.json = JSON.stringify(this.canvas.toJSON()); // save the "virgin" canvas to a json file
     this.history = []; // history will store all the json files when we hit the save button
@@ -245,48 +245,49 @@ export default class extends Controller {
   }
 
   #clearMyForms() {
-    this.actions.innerHTML = "";
+    // console.log(this.shapeBlock);
+    this.shapesContainer.innerHTML = "";
   }
 
   #fillMyForms() {
     let count = 1;
     const that = this;
     this.canvas.getObjects().forEach(function (obj) {
+      console.log(obj);
       obj.name = `FORME-${count}`;
-      
+      let shapeId = `shape-block-${count}`;
       // bloc html pour afficher le menu déroulant
-      const liHtml = `
+      let liHtml = `
         <li class="mb-1">
           <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#yourshapes-collapse-${count}" aria-expanded="false">
-            <h4 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';" class="title-shape">FORME-${count}</h4>
+            <h4 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';" class="title-shape">${obj.name}</h4>
           </button>
           <div class="collapse" id="yourshapes-collapse-${count}">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <div class="title-layer" id="shape-block-${count}">
+              <div class="title-layer" id="${shapeId}">
               </div>
             </ul>
           </div>
         </li>
       `;
-      const shapesContainer = document.getElementById("shapes-container");
-      shapesContainer.insertAdjacentHTML("beforeend", liHtml);
-      
+      that.shapesContainer.insertAdjacentHTML("beforeend", liHtml);
       // bloc html pour afficher les formes et sous formes dans les menu déroulants
-      const actions = document.getElementById(`shape-block-${count}`);
-      this.obj.name = `FORME-${count}`;
-      that.actions.insertAdjacentHTML(
-        "beforeend",
-        `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${obj.name}</h3>`
-      );
+      // const actions = document.getElementById(`shape-block-${count}`);
+      // that.shapeBlock.insertAdjacentHTML(
+      //   "beforeend",
+      //   `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${obj.name}</h3>`
+      // );
       let i = 0;
       obj._objects.forEach((path) => {
         console.log(path);
         path.id = `Forme-${count}-layer-${i}`;
-        that.actions.insertAdjacentHTML(
+        let shapeBlock = document.getElementById(shapeId);
+        console.log(shapeBlock);
+        shapeBlock.insertAdjacentHTML(
           "beforeend",
           `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-layer d-none" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${path.id}</div>`
         );
-        that.actions.insertAdjacentHTML(
+        shapeBlock.insertAdjacentHTML(
           "beforeend",
           `<canvas data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' id="c-${path.id}" width="100" height="50"></canvas`
         );
@@ -298,7 +299,7 @@ export default class extends Controller {
         let true_real_path = real_path.join("");
         let canvas = new fabric.StaticCanvas(`c-${path.id}`);
         let shapePath = new fabric.Path(true_real_path);
-        
+
         // on size les sous formes dans les piti canvas
         canvas.add(shapePath);
         shapePath.scaleToHeight(canvas.height / 3);
@@ -308,8 +309,8 @@ export default class extends Controller {
         i++;
       });
       count++;
-      });
-   }
+    });
+  }
 }
 
 // insérer une image issue du svg
