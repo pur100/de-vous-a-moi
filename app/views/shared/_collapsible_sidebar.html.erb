@@ -18,7 +18,6 @@
             </button>
             <% @color_ranges.each do |color| %>
               <% if color.color4.nil? %>
-              <div class="color-generator">
                 <div class="collapse ranges-colors" id="trois-c-collapse">
                   <ul id="range" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <div class="color-generator" data-action="click->pattern#selectedColor">
