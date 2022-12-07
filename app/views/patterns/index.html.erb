@@ -61,20 +61,21 @@
                   </div>
                 <% else %>
                   <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>" class="child bg-one" style="background-image: url('<%=pattern.image_url%>')">
-                    <div class="box-black">
-                    </div>
+                    <%# <div class="box-black">
+                    </div> %>
                   </div>
                 <% end %>
-                </div>
-                  <div class='card-desc-overlay'>
-                    <span class='card-desc-first-overlay'>
-                      <h2><strong><%= pattern.name %></strong></h2>
-                      <p><small>Pattern author</small></p>
-                    <div class='card-desc-last-overlay text-right'>
-                      <%= link_to "Voir les produits",  root_path, data: {turbo_method: :post}, class: "button-black" %>
-                      <%= link_to "Éditer ce motif", duplicate_pattern_path(pattern), data: {turbo_method: :post}, class: "button-black" %>
-                      <%# <button type="button" class="btn button-black" data-bs-dismiss="modal">Éditer ce motif</button> %>
-                      <%# <button type="button" class="btn button-black">Voir les produits</button> %>
+              </div>
+
+              <div class='card-desc-overlay'>
+                <span class='card-desc-first-overlay'>
+                  <h2><strong><%= pattern.name %></strong></h2>
+                  <p><small>Pattern author</small></p>
+                <div class='card-desc-last-overlay text-right'>
+                  <%= link_to "Voir les produits",  root_path, data: {turbo_method: :post}, class: "button-black" %>
+                  <%= link_to "Éditer ce motif", root_path, class:"button-black" %>
+                  <%# <button type="button" class="btn button-black" data-bs-dismiss="modal">Éditer ce motif</button> %>
+                  <%# <button type="button" class="btn button-black">Voir les produits</button> %>
                 </div>
               </div>
             </div>

@@ -62,6 +62,8 @@
           </div>
         </div>
 
+
+
          <div class="modal fade" id="exampleModal<%= pattern.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content" id="overlay">
@@ -72,8 +74,8 @@
                   </div>
                 <% else %>
                   <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>" class="child bg-one" style="background-image: url('<%=pattern.image_url%>')">
-                    <div class="box-black">
-                    </div>
+                    <%# <div class="box-black">
+                    </div> %>
                   </div>
                 <% end %>
               </div>
