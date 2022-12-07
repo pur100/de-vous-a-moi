@@ -86,7 +86,7 @@
                   <p><small>Pattern author</small></p>
                 <div class='card-desc-last-overlay text-right'>
 
-                  <%= link_to "Voir les produits",  root_path, data: {turbo_method: :post}, class: "button-black" %>
+                  <%= link_to "Voir les produits", pattern_products_path(pattern.id), class: "button-black" %>
                   <%= link_to "Éditer ce motif", duplicate_pattern_path(pattern), data: {turbo_method: :post}, class: "button-black" %>
                   <%= link_to "Delete", pattern_path(pattern), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button-black"%>
 
