@@ -10,58 +10,32 @@
   </div>
   <div class='card-product'>
     <div class="parent-product" >
-      <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= @pattern.id %>" class="child-product bg-one" style="background-image: url('<%=@pattern.image_url%>')">
+      <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= @pattern.id %>" class="child-product bg-one" style="background-image: url('<%=@pattern.image_url%>');background-repeat: repeat;background-size: 21%;">
       </div>
     </div>
   </div>
   <div class="products">
-  <h1>Votre motif sur ...</h1>
-    <div class="devis">
-      <%= link_to "Casquette", "#", class: "button-black" %>
+  <div class="devis">
+    <h2>Votre motif sur ...</h2>
+    <ul>
+      <li><%= link_to "Casquette", "#", class: "button-white" %></li>
+      <li><%= link_to "Papier peint", "#", class: "button-white" %></li>
+      <li><%= link_to "Tee-shirt", "#", class: "button-white" %></li>
+      <li><%= link_to "Sac", "#", class: "button-white" %></li>
+      <li><%= link_to "Foulard", "#", class: "button-white" %></li>
+      <li><%= link_to "Chaise de réal", "#", class: "button-white" %></li>
+      <li><%= link_to "Chaise longue", "#", class: "button-white" %></li>
+      <li><%= link_to "Coussin", "#", class: "button-white" %></li>
+      <li><%= link_to "Bracelet", "#", class: "button-white" %></li>
+      <li><%= link_to "Pull", "#", class: "button-white" %></li>
+      <li><%= link_to "Maillot de bain H", "#", class: "button-white" %></li>
+      <li><%= link_to "Maillot de bain F", "#", class: "button-white" %></li>
+      <li><%= link_to "Gourde", "#", class: "button-white" %></li>
+      <li><%= link_to "Chaussette", "#", class: "button-white" %></li>
+      <li><%= link_to "Coque de téléphone", "#", class: "button-white" %></li>
     </div>
-    <div class="devis">
-      <%= link_to "Papier peint", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Tee-shirt", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Sac", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Foulard", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Chaise de réal", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Chaise longue", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Coussin", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Bracelet", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Pull", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Maillot de bain H", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Maillot de bain F", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Gourde", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Chaussette", "#", class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Coque de téléphone", "#", class: "button-black" %>
-    </div>
-  </div>
+  </ul>
+</div>
 
             <%# <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= @pattern.id " class="child bg-one" style="background-image: url('<%=pattern.image_url')"> %>
 

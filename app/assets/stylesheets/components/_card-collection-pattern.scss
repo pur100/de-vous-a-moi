@@ -81,14 +81,13 @@
   height: 92px;
   position: relative;
   .card-desc-last .fa-solid{
-    gap: 1rem;
     position: absolute;
-    right: 16px;
-    top: 61px;
-    font-size: 22px;
+    right: 15px;
+    top: 54px;
+    font-size: 16px;
     color: white;
     background-color: black;
-    padding: 5px 10px;
+    padding: 6px 8px;
     border-radius: 3px;
     &:hover{
       background: #888888;;
@@ -136,6 +135,8 @@
     padding: 1rem;
     color: #9397ad;
     position: relative;
+    display: contents;
+
     .card-desc-last-overlay img{
       gap: 1rem;
       position: absolute;
@@ -149,8 +150,9 @@
 
     .card-desc-first-overlay {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       width: 100%;
+      margin-top: 10px;
       a {
         margin: 0;
       }
