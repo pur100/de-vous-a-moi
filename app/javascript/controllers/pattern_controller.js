@@ -4,13 +4,15 @@ import { fabric } from "fabric";
 // Save each shape as well
 
 export default class extends Controller {
+  static targets = ["displayColor", "displayBackgroundColor"];
+
   static values = {
     update: String, // updateValue is the link to pattern/id/update used in save function
     json: String, // jsonValue is pattern.json
   };
 
   connect() {
-    console.log("connectéd");
+    console.log("connecté");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas("canvas");
     this.#loadCanvas(); // On load le canvas s'il a déjà été sauvegardé
@@ -19,7 +21,23 @@ export default class extends Controller {
     this.history = []; // history will store all the json files when we hit the save button
     this.index = -1; // index is the number of element of history. will be updated when we hit save as well
     this.undo_index = -1; // we will decrement undo_index each time we hit undo and increment it each time we hit redo
-    this.canvas.on("object:modified", this.#autoSave.bind(this)); // we set an envent listenner on object:modified so that each time a modification is done, we call private function autosave
+    // we set an envent listenner on object:modified so that each time a modification is done,
+    // we call private function autosave
+    this.canvas.on("object:modified", this.#autoSave.bind(this));
+  }
+
+  selectedColor(event) {
+    console.log("in color selector");
+    // displayColorTarget désigne la palette sélectionnée que l'on veut afficher près de notre canvas
+    // on lui donne la valeur de la palette de couleur sélectionnée
+    this.displayColorTarget.innerHTML = event.currentTarget.innerHTML;
+    // on donne la même palette pour la background color. On vient juste modifier la data action pour
+    // que lorsque l'on clique dessus ce soit le background color qui soit setté
+    let background_color_HTML = event.currentTarget.innerHTML.replace(
+      /changeShapeColor/g,
+      "setBackgroundColor"
+    );
+    this.displayBackgroundColorTarget.innerHTML = background_color_HTML;
   }
 
   clone() {
@@ -223,10 +241,9 @@ export default class extends Controller {
           </ul>
         </div>
       </li>
-    `
-    const shapesContainer =  document.getElementById('shapes-container');
+    `;
+    const shapesContainer = document.getElementById("shapes-container");
     shapesContainer.insertAdjacentHTML("beforeend", liHtml);
-
 
     const actions = document.getElementById(`shape-block-${this.count}`);
     this.obj.name = `FORME-${this.count}`;
