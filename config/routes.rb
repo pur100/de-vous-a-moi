@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
 
-  resources :patterns, only: %i[index create show update]
+  resources :patterns, only: %i[index create show update] do
+    post :duplicate, on: :member
+
+    # Generated route:
+    # duplicate_pattern POST   /patterns/:id/duplicate(.:format) containers#duplicate
+  end
 
   get 'dashboard', to: 'patterns#dashboard'
 end

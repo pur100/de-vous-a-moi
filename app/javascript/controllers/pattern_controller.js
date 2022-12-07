@@ -41,7 +41,7 @@ export default class extends Controller {
     );
     this.displayBackgroundColorTarget.innerHTML = background_color_HTML;
     // on ajoute la bonne classe maintenant car si elle est en dur dans le html c'est caca
-    this.displayBackgroundColorTarget.classList.add("background-generator");
+    this.displayBackgroundColorTarget.classList.add("color-generator");
   }
 
   clone() {
