@@ -21,14 +21,23 @@ export default class extends Controller {
     this.history = []; // history will store all the json files when we hit the save button
     this.index = -1; // index is the number of element of history. will be updated when we hit save as well
     this.undo_index = -1; // we will decrement undo_index each time we hit undo and increment it each time we hit redo
-    this.canvas.on("object:modified", this.#autoSave.bind(this)); // we set an envent listenner on object:modified so that each time a modification is done, we call private function autosave
+    // we set an envent listenner on object:modified so that each time a modification is done,
+    // we call private function autosave
+    this.canvas.on("object:modified", this.#autoSave.bind(this));
   }
 
   selectedColor(event) {
     console.log("in color selector");
+    // displayColorTarget désigne la palette sélectionnée que l'on veut afficher près de notre canvas
+    // on lui donne la valeur de la palette de couleur sélectionnée
     this.displayColorTarget.innerHTML = event.currentTarget.innerHTML;
-    this.displayBackgroundColorTarget.innerHTML = event.currentTarget.innerHTML;
-    console.log(event.currentTarget.innerHTML);
+    // on donne la même palette pour la background color. On vient juste modifier la data action pour
+    // que lorsque l'on clique dessus ce soit le background color qui soit setté
+    let background_color_HTML = event.currentTarget.innerHTML.replace(
+      /changeShapeColor/g,
+      "setBackgroundColor"
+    );
+    this.displayBackgroundColorTarget.innerHTML = background_color_HTML;
   }
 
   clone() {
