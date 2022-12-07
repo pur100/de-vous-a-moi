@@ -12,7 +12,7 @@ export default class extends Controller {
   };
 
   connect() {
-    console.log("connecté");
+    console.log("connectéd");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas("canvas");
     this.#loadCanvas(); // On load le canvas s'il a déjà été sauvegardé
@@ -31,6 +31,8 @@ export default class extends Controller {
     // displayColorTarget désigne la palette sélectionnée que l'on veut afficher près de notre canvas
     // on lui donne la valeur de la palette de couleur sélectionnée
     this.displayColorTarget.innerHTML = event.currentTarget.innerHTML;
+    // on ajoute la bonne classe maintenant car si elle est en dur dans le html c'est caca
+    this.displayColorTarget.classList.add("color-generator");
     // on donne la même palette pour la background color. On vient juste modifier la data action pour
     // que lorsque l'on clique dessus ce soit le background color qui soit setté
     let background_color_HTML = event.currentTarget.innerHTML.replace(
@@ -38,6 +40,8 @@ export default class extends Controller {
       "setBackgroundColor"
     );
     this.displayBackgroundColorTarget.innerHTML = background_color_HTML;
+    // on ajoute la bonne classe maintenant car si elle est en dur dans le html c'est caca
+    this.displayBackgroundColorTarget.classList.add("background-generator");
   }
 
   clone() {
