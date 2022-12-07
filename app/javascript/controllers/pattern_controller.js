@@ -80,19 +80,60 @@ export default class extends Controller {
     this.displayBackgroundColorTarget.classList.add("color-generator");
   }
 
-  randomColor() {
-    let colorArray = this.displayColorTarget.innerText
-      .replace(/#/g, " #")
-      .split(" ")
-      .slice(1);
+  allRandomColor() {
+    let colorArray = this.displayColorTarget.innerText.split("#").slice(1);
     this.canvas.getObjects().forEach((object) => {
       object._objects.forEach((path) => {
-        console.log(path);
-        console.log(colorArray[Math.floor(Math.random() * colorArray.length)]);
-        path.set({
-          fill: colorArray[Math.floor(Math.random() * colorArray.length)],
-        });
+        let randomColorWithoutHashtag =
+          colorArray[Math.floor(Math.random() * colorArray.length)];
+        let randomColor = `#${randomColorWithoutHashtag}`;
+        if (randomColor.trim() === this.canvas.backgroundColor.trim()) {
+          let fakeArray = [];
+          colorArray.forEach((color) => {
+            if (color === randomColorWithoutHashtag) {
+            } else {
+              fakeArray.push(color);
+            }
+          });
+          let newRandomColor =
+            fakeArray[Math.floor(Math.random() * fakeArray.length)];
+          path.set({
+            fill: newRandomColor,
+          });
+        } else {
+          path.set({
+            fill: randomColor,
+          });
+        }
       });
+    });
+    this.canvas.renderAll();
+  }
+
+  selectedShapeRandomColor() {
+    let colorArray = this.displayColorTarget.innerText.split("#").slice(1);
+    this.canvas.getActiveObject()._objects.forEach((path) => {
+      let randomColorWithoutHashtag =
+        colorArray[Math.floor(Math.random() * colorArray.length)];
+      let randomColor = `#${randomColorWithoutHashtag}`;
+      if (randomColor.trim() === this.canvas.backgroundColor.trim()) {
+        let fakeArray = [];
+        colorArray.forEach((color) => {
+          if (color === randomColorWithoutHashtag) {
+          } else {
+            fakeArray.push(color);
+          }
+        });
+        let newRandomColor =
+          fakeArray[Math.floor(Math.random() * fakeArray.length)];
+        path.set({
+          fill: newRandomColor,
+        });
+      } else {
+        path.set({
+          fill: randomColor,
+        });
+      }
     });
     this.canvas.renderAll();
   }
