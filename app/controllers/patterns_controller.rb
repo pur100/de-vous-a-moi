@@ -48,9 +48,13 @@ class PatternsController < ApplicationController
 
   def products
     @pattern = Pattern.find(params[:pattern_id])
-   end
+  end
 
-def destroy
+  def devis
+    @pattern = Pattern.find(params[:pattern_id])
+  end
+
+  def destroy
     @pattern = Pattern.find(params[:id])
     @pattern.destroy
     # Redirect to actual page, if problem redirect to rootpath -> home
