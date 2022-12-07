@@ -9,9 +9,11 @@ Rails.application.routes.draw do
 
   resources :patterns, only: %i[index create show update destroy] do
     post :duplicate, on: :member
-
     # Generated route:
     # duplicate_pattern POST   /patterns/:id/duplicate(.:format) containers#duplicate
+
+    get 'products', to: 'patterns#products'
+    get 'devis', to: 'patterns#devis'
   end
 
   get 'dashboard', to: 'patterns#dashboard'

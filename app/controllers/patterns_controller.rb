@@ -46,7 +46,11 @@ class PatternsController < ApplicationController
     @pattern = Pattern.where(user: current_user)
   end
 
-  def destroy
+  def products
+    @pattern = Pattern.find(params[:pattern_id])
+   end
+
+def destroy
     @pattern = Pattern.find(params[:id])
     @pattern.destroy
     # Redirect to actual page, if problem redirect to rootpath -> home
