@@ -84,6 +84,8 @@
         <div class="parent" >
           <% if pattern.photo.attached? %>
             <div class="child bg-one" style="background: url('<%= cl_image_path pattern.photo.key %>'); background-size: cover;">
+          <% elsif pattern.image_url.nil? == false %>
+            <div class="child bg-one" style="background: url('<%=pattern.image_url%>'); background-size: cover;">
           <% else %>
             <div class="child bg-one" style="background: url('<%= image_path "homepage/patterns/motif-test.png" %>'); background-size: cover;">
           <% end %>
