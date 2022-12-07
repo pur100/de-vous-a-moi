@@ -68,4 +68,17 @@
   }
 }
 
+#canva-bg {
+  opacity: 0.5;
+  z-index: -1000;
+  width: 100vh;
+  scale: 100%;
+  display: flex;
+  justify-content: end;
+  background-repeat: repeat;
+  min-width: 100vw;
+  align-items: end;
+  height: 100vw;
+  background-size: 14%;
+}
 // }

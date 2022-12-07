@@ -2,7 +2,7 @@
 <%# <div class="wrapper-all"> %>
 
 
-<div id="canva-bg" data-controller="pattern" style="display: flex;" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
+<div  data-controller="pattern" style="display: flex;" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
 
     <canvas id="canvas" width="600" height="600" position="absolute" ></canvas>
 
@@ -22,6 +22,7 @@
   <button data-action="click->pattern#removeSelection" class="button-white">Delete selection</button>
   <button data-action="click->pattern#clone" class="button-white">Clone</button>
 </div>
+<div id="canva-bg"></div>
 </div>
 
 

@@ -26,6 +26,42 @@ export default class extends Controller {
     this.canvas.on("object:modified", this.#autoSave.bind(this));
   }
 
+  clone() {
+    this.canvas.getActiveObject().clone(function (cloned) {
+      let _clipboard = cloned;
+    });
+    _clipboard.clone(function (clonedObj) {
+      this.canvas.discardActiveObject();
+      clonedObj.set({
+        left: clonedObj.left + 10,
+        top: clonedObj.top + 10,
+        evented: true,
+      });
+      if (clonedObj.type === "activeSelection") {
+        // active selection needs a reference to the canvas.
+        clonedObj.canvas = this.canvas;
+        clonedObj.forEachObject(function (obj) {
+          this.canvas.add(obj);
+        });
+        // this should solve the unselectability
+        clonedObj.setCoords();
+      } else {
+        this.canvas.add(clonedObj);
+      }
+      _clipboard.top += 10;
+      _clipboard.left += 10;
+      this.canvas.setActiveObject(clonedObj);
+      this.canvas.requestRenderAll();
+    });
+    // let object = fabric.util.object.clone(this.canvas.getActiveObject());
+    // object.set("top", object.top + 100);
+    // object.set("left", object.left + 100);
+    // this.canvas.add(object);
+    this.#autoSave();
+    this.#clearMyForms();
+    this.#fillMyForms();
+  }
+
   selectedColor(event) {
     console.log("in color selector");
     // displayColorTarget désigne la palette sélectionnée que l'on veut afficher près de notre canvas
@@ -42,16 +78,6 @@ export default class extends Controller {
     this.displayBackgroundColorTarget.innerHTML = background_color_HTML;
     // on ajoute la bonne classe maintenant car si elle est en dur dans le html c'est caca
     this.displayBackgroundColorTarget.classList.add("color-generator");
-  }
-
-  clone() {
-    let object = fabric.util.object.clone(this.canvas.getActiveObject());
-    object.set("top", object.top + 100);
-    object.set("left", object.left + 100);
-    this.canvas.add(object);
-    this.#autoSave();
-    this.#clearMyForms();
-    this.#fillMyForms();
   }
 
   #autoSave() {
