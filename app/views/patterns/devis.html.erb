@@ -1,0 +1,68 @@
+  <div class="wrapper">
+  <div class="main-title">
+    <span class="txt t1"> <h1>SAME SAME, BUT DIFFERENT !&nbsp;</h1></span>
+    <span class="txt t2"> <h1>SAME SAME, BUT DIFFERENT !&nbsp;</h1></span>
+    <span class="txt t2"> <h1>SAME SAME, BUT DIFFERENT !&nbsp;</h1></span>
+  </div>
+
+<div class="pattern-product">
+  <%# <h1>Votre motif : <%= @pattern.name </h1> %>
+  </div>
+  <div class='card-product'>
+    <div class="parent-product" >
+      <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= @pattern.id %>" class="child-product bg-one" style="background-image: url('<%=@pattern.image_url%>')">
+      </div>
+    </div>
+  </div>
+  <div class="products">
+  <h1>Votre motif sur ...</h1>
+    <div class="devis">
+      <%= link_to "Casquette", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Papier peint", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Tee-shirt", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Sac", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Foulard", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Chaise de réal", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Chaise longue", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Coussin", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Bracelet", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Pull", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Maillot de bain H", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Maillot de bain F", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Gourde", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Chaussette", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+    <div class="devis">
+      <%= link_to "Coque de téléphone", pattern_devis_path(@pattern), class: "button-black" %>
+    </div>
+  </div>
+
+            <%# <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= @pattern.id " class="child bg-one" style="background-image: url('<%=pattern.image_url')"> %>
+
+</div>

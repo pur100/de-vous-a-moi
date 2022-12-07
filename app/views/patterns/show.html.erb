@@ -40,12 +40,11 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Aperçu</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body" style="background-image: url('<%=@pattern.image_url%>');">
       </div>
       <div class="modal-footer">
         <button type="button" class="button-white" data-bs-dismiss="modal">Fermer</button>
-        <%= link_to "Voir les produits",  pattern_products_path(@pattern.id), class: "button-black" %>
+        <%= link_to "Voir les produits", pattern_products_path(@pattern.id), class: "button-black" %>
       </div>
     </div>
   </div>
