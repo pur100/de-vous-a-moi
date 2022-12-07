@@ -47,6 +47,10 @@ class PatternsController < ApplicationController
     @pattern = Pattern.where(user: current_user)
   end
 
+  def products
+    @pattern = Pattern.find(params[:pattern_id])
+  end
+
   private
 
   def patterns_params

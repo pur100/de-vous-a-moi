@@ -85,8 +85,8 @@
                   <h2><strong><%= pattern.name %></strong></h2>
                   <p><small>Pattern author</small></p>
                 <div class='card-desc-last-overlay text-right'>
-                  <%= link_to "Voir les produits",  root_path, data: {turbo_method: :post}, class: "button-black" %>
-                   <%= link_to "Éditer ce motif", duplicate_pattern_path(pattern), data: {turbo_method: :post}, class: "button-black" %>
+                  <%= link_to "Voir les produits",  pattern_products_path(pattern), class: "button-black" %>
+                  <%= link_to "Éditer ce motif", duplicate_pattern_path(pattern), data: {turbo_method: :post}, class: "button-black" %>
                   <%# <button type="button" class="btn button-black" data-bs-dismiss="modal">Éditer ce motif</button> %>
                   <%# <button type="button" class="btn button-black">Voir les produits</button> %>
                 </div>
