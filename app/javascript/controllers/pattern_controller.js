@@ -88,58 +88,55 @@ export default class extends Controller {
 
   allRandomColor() {
     let colorArray = this.displayColorTarget.innerText.split("#").slice(1);
+    let fakeArray = [];
+    colorArray.forEach((color) => {
+      fakeArray.push(`#${color.trim()}`);
+    }); // on met toutes les couleurs de la palette dans fakeArray avec un # (code hexa)
+    let indexToDelete = fakeArray.indexOf(this.canvas.backgroundColor);
+    fakeArray.splice(indexToDelete, 1); // on a supprimé la valeur qui correspond à background color, elle n'est plus utilisable pour les formes
     this.canvas.getObjects().forEach((object) => {
       object._objects.forEach((path) => {
-        let randomColorWithoutHashtag =
-          colorArray[Math.floor(Math.random() * colorArray.length)];
-        let randomColor = `#${randomColorWithoutHashtag}`;
-        if (randomColor.trim() === this.canvas.backgroundColor.trim()) {
-          let fakeArray = [];
-          colorArray.forEach((color) => {
-            if (color === randomColorWithoutHashtag) {
-            } else {
-              fakeArray.push(color);
-            }
-          });
-          let newRandomColor =
-            fakeArray[Math.floor(Math.random() * fakeArray.length)];
-          path.set({
-            fill: newRandomColor,
-          });
-        } else {
-          path.set({
-            fill: randomColor,
-          });
-        }
+        let randomColor =
+          fakeArray[Math.floor(Math.random() * fakeArray.length)];
+        path.set({
+          fill: randomColor,
+        });
       });
     });
     this.canvas.renderAll();
   }
+  //   if (randomColor.trim() === this.canvas.backgroundColor.trim()) {
+  //     colorArray.forEach((color) => {
+  //       if (color === randomColorWithoutHashtag) {
+  //       } else {
+  //         fakeArray.push(color);
+  //       }
+  //     });
+  //     let newRandomColor =
+  //       fakeArray[Math.floor(Math.random() * fakeArray.length)];
+  //     path.set({
+  //       fill: newRandomColor,
+  //     });
+  //   } else {
+  //     path.set({
+  //       fill: randomColor,
+  //     });
+  //   }
+  // });
 
   selectedShapeRandomColor() {
     let colorArray = this.displayColorTarget.innerText.split("#").slice(1);
+    let fakeArray = [];
+    colorArray.forEach((color) => {
+      fakeArray.push(`#${color.trim()}`);
+    }); // on met toutes les couleurs de la palette dans fakeArray avec un # (code hexa)
+    let indexToDelete = fakeArray.indexOf(this.canvas.backgroundColor);
+    fakeArray.splice(indexToDelete, 1); // on a supprimé la valeur qui correspond à background color, elle n'est plus utilisable pour les formes
     this.canvas.getActiveObject()._objects.forEach((path) => {
-      let randomColorWithoutHashtag =
-        colorArray[Math.floor(Math.random() * colorArray.length)];
-      let randomColor = `#${randomColorWithoutHashtag}`;
-      if (randomColor.trim() === this.canvas.backgroundColor.trim()) {
-        let fakeArray = [];
-        colorArray.forEach((color) => {
-          if (color === randomColorWithoutHashtag) {
-          } else {
-            fakeArray.push(color);
-          }
-        });
-        let newRandomColor =
-          fakeArray[Math.floor(Math.random() * fakeArray.length)];
-        path.set({
-          fill: newRandomColor,
-        });
-      } else {
-        path.set({
-          fill: randomColor,
-        });
-      }
+      let randomColor = fakeArray[Math.floor(Math.random() * fakeArray.length)];
+      path.set({
+        fill: randomColor,
+      });
     });
     this.canvas.renderAll();
   }
