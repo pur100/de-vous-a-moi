@@ -26,7 +26,7 @@
   <%# <%= @user.email %>
   </div>
   <div class="my-patterns">
-    <div class="collection" style="margin-top: 21px;">
+    <div class="collection-2" style="margin-top: 21px;">
     <% if @pattern.empty? %>
       <h2>Oups ... Tu n'as aucun motif pour l'instant !</h2>
       <h1> Lance toi ...</h1>
@@ -44,7 +44,7 @@
                 </div>
               </div>
                <% else %>
-                <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>" class="child bg-one" style="background-image: url('<%=pattern.image_url%>')">
+                <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>" class="child bg-one" style="background-image: url('<%=pattern.image_url%>');background-repeat: repeat;background-size: 21%;">
                   <div class="box-black">
                   </div>
                 </div>
@@ -54,17 +54,19 @@
           <div class='card-desc'>
             <span class='card-desc-first'>
             <h2><strong><%= pattern.name %></strong></h2>
-              <p><small>Pattern author</small></p>
             </span>
             <span class='card-desc-last'>
-            <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>"><i class="fa-solid fa-eye"></i></p>
+            <%= link_to pattern_path(pattern), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
             </span>
           </div>
         </div>
 
 
 
-         <div class="modal fade" id="exampleModal<%= pattern.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <!-- Modal -->
+      <div class="modal fade" id="exampleModal<%= pattern.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content" id="overlay">
             <div class='card-overlay'>
@@ -73,7 +75,7 @@
                   <div class="child bg-one" style="background: url('<%= cl_image_path pattern.photo.key %>'); background-size: cover;">
                   </div>
                 <% else %>
-                  <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>" class="child bg-one" style="background-image: url('<%=pattern.image_url%>')">
+                  <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= pattern.id %>" class="child bg-one" style="background-image: url('<%=pattern.image_url%>'); background-repeat: repeat;background-size: 21%;">
                     <%# <div class="box-black">
                     </div> %>
                   </div>
@@ -82,18 +84,14 @@
 
               <div class='card-desc-overlay'>
                 <span class='card-desc-first-overlay'>
-                  <h2><strong><%= pattern.name %></strong></h2>
-                  <p><small>Pattern author</small></p>
-                <div class='card-desc-last-overlay text-right'>
-
-                  <%= link_to "Voir les produits", pattern_products_path(pattern.id), class: "button-black" %>
+                  <h2 style="margin-right: 12px;"><strong><%= pattern.name %></strong></h2>
+              </div>
+                <div class='card-desc-last-overlay text-right' style = "display: flex; justify-content: center;">
+                  <%= link_to "Voir les produits", pattern_products_path(pattern.id), class: "button-white" %>
                   <%= link_to "Éditer ce motif", duplicate_pattern_path(pattern), data: {turbo_method: :post}, class: "button-black" %>
-                  <%= link_to "Supprimer", pattern_path(pattern), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button-black"%>
-
                   <%# <button type="button" class="btn button-black" data-bs-dismiss="modal">Éditer ce motif</button> %>
                   <%# <button type="button" class="btn button-black">Voir les produits</button> %>
                 </div>
-              </div>
             </div>
           </div>
         </div>
