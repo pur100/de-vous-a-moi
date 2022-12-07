@@ -12,7 +12,7 @@ export default class extends Controller {
   };
 
   connect() {
-    console.log("connectéd");
+    console.log("connecté");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas("canvas");
     this.shapesContainer = document.getElementById("shapes-container");
@@ -27,36 +27,36 @@ export default class extends Controller {
   }
 
   clone() {
-    this.canvas.getActiveObject().clone(function (cloned) {
-      let _clipboard = cloned;
-    });
-    _clipboard.clone(function (clonedObj) {
-      this.canvas.discardActiveObject();
-      clonedObj.set({
-        left: clonedObj.left + 10,
-        top: clonedObj.top + 10,
-        evented: true,
-      });
-      if (clonedObj.type === "activeSelection") {
-        // active selection needs a reference to the canvas.
-        clonedObj.canvas = this.canvas;
-        clonedObj.forEachObject(function (obj) {
-          this.canvas.add(obj);
-        });
-        // this should solve the unselectability
-        clonedObj.setCoords();
-      } else {
-        this.canvas.add(clonedObj);
-      }
-      _clipboard.top += 10;
-      _clipboard.left += 10;
-      this.canvas.setActiveObject(clonedObj);
-      this.canvas.requestRenderAll();
-    });
-    // let object = fabric.util.object.clone(this.canvas.getActiveObject());
-    // object.set("top", object.top + 100);
-    // object.set("left", object.left + 100);
-    // this.canvas.add(object);
+    // this.canvas.getActiveObject().clone(function (cloned) {
+    //   let _clipboard = cloned;
+    // });
+    // _clipboard.clone(function (clonedObj) {
+    //   this.canvas.discardActiveObject();
+    //   clonedObj.set({
+    //     left: clonedObj.left + 10,
+    //     top: clonedObj.top + 10,
+    //     evented: true,
+    //   });
+    //   if (clonedObj.type === "activeSelection") {
+    //     // active selection needs a reference to the canvas.
+    //     clonedObj.canvas = this.canvas;
+    //     clonedObj.forEachObject(function (obj) {
+    //       this.canvas.add(obj);
+    //     });
+    //     // this should solve the unselectability
+    //     clonedObj.setCoords();
+    //   } else {
+    //     this.canvas.add(clonedObj);
+    //   }
+    //   _clipboard.top += 10;
+    //   _clipboard.left += 10;
+    //   this.canvas.setActiveObject(clonedObj);
+    //   this.canvas.requestRenderAll();
+    // });
+    let object = fabric.util.object.clone(this.canvas.getActiveObject());
+    object.set("top", object.top + 100);
+    object.set("left", object.left + 100);
+    this.canvas.add(object);
     this.#autoSave();
     this.#clearMyForms();
     this.#fillMyForms();
