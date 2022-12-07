@@ -12,18 +12,22 @@
   <%= render "shared/collapsible_myforms",class:"forms"  %>
   <div data-pattern-target="displayColor" ></div>
   <div class="action-generator">
-  <button data-action="click->pattern#groupSelection" class="button-white">Select all</button>
-  <%# <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button> %>
-  <button data-action="click->pattern#saveCanvas" class="button-white">Save</button>
-  <button data-action="click->pattern#loadCanvas" class="button-white">Load</button>
-  <button data-action="click->pattern#undo" class="button-white">Undo</button>
-  <button data-action="click->pattern#redo" class="button-white">Redo</button>
-  <button data-action="click->pattern#clearCanvas" class="button-white">Clear all</button>
-  <button data-action="click->pattern#removeSelection" class="button-white">Delete selection</button>
-  <button data-action="click->pattern#copy" class="button-white">Copy</button>
-  <button data-action="click->pattern#paste" class="button-white">Paste</button>
-  <button data-action="click->pattern#allRandomColor" class="button-white">All Random Color</button>
-  <button data-action="click->pattern#selectedShapeRandomColor" class="button-white">Selected Random Color</button>
+  <h4>Selection</h4>
+  <button data-action="click->pattern#groupSelection" class="button-white">Tout sélectionner</button>
+  <button data-action="click->pattern#unGroupSelection" class="button-white">Tout déselectionner</button>
+  <button data-action="click->pattern#clearCanvas" class="button-white">Tout supprimer</button>
+  <button data-action="click->pattern#removeSelection" class="button-white">Supprimer la sélection</button>
+  <h4>Sauvegarde</h4>
+  <button data-action="click->pattern#saveCanvas" class="button-white">Sauvegarder</button>
+  <%# <button data-action="click->pattern#loadCanvas" class="button-white">Charger</button> %>
+  <button data-action="click->pattern#undo" class="button-white">Annuler action</button>
+  <button data-action="click->pattern#redo" class="button-white">Reproduire action</button>
+  <h4>Copier-coller</h4>
+  <button data-action="click->pattern#copy" class="button-white">Copier</button>
+  <button data-action="click->pattern#paste" class="button-white">Coller</button>
+  <h4>Changer les couleurs</h4>
+  <button data-action="click->pattern#allRandomColor" class="button-white">Toutes les formes</button>
+  <button data-action="click->pattern#selectedShapeRandomColor" class="button-white">La forme sélectionnée</button>
 </div>
 <div id="canva-bg"></div>
 </div>
