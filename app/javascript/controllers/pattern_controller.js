@@ -44,6 +44,23 @@ export default class extends Controller {
     this.displayBackgroundColorTarget.classList.add("color-generator");
   }
 
+  randomColor() {
+    let colorArray = this.displayColorTarget.innerText
+      .replace(/#/g, " #")
+      .split(" ")
+      .slice(1);
+    this.canvas.getObjects().forEach((object) => {
+      object._objects.forEach((path) => {
+        console.log(path);
+        console.log(colorArray[Math.floor(Math.random() * colorArray.length)]);
+        path.set({
+          fill: colorArray[Math.floor(Math.random() * colorArray.length)],
+        });
+      });
+    });
+    this.canvas.renderAll();
+  }
+
   clone() {
     let object = fabric.util.object.clone(this.canvas.getActiveObject());
     object.set("top", object.top + 100);
@@ -253,7 +270,6 @@ export default class extends Controller {
     let count = 1;
     const that = this;
     this.canvas.getObjects().forEach(function (obj) {
-      console.log(obj);
       obj.name = `FORME-${count}`;
       let shapeId = `shape-block-${count}`;
       // bloc html pour afficher le menu déroulant
@@ -279,10 +295,8 @@ export default class extends Controller {
       // );
       let i = 0;
       obj._objects.forEach((path) => {
-        console.log(path);
         path.id = `Forme-${count}-layer-${i}`;
         let shapeBlock = document.getElementById(shapeId);
-        console.log(shapeBlock);
         shapeBlock.insertAdjacentHTML(
           "beforeend",
           `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-layer d-none" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${path.id}</div>`
@@ -293,7 +307,6 @@ export default class extends Controller {
         );
         let real_path = [];
         path.path.forEach((p) => {
-          console.log(p.join(","));
           real_path.push(p.join(","));
         });
         let true_real_path = real_path.join("");
