@@ -1,68 +1,60 @@
-  <div class="wrapper">
+  <div class="wrapper-devis">
   <div class="main-title">
-    <span class="txt t1"> <h1>SAME SAME, BUT DIFFERENT !&nbsp;</h1></span>
-    <span class="txt t2"> <h1>SAME SAME, BUT DIFFERENT !&nbsp;</h1></span>
-    <span class="txt t2"> <h1>SAME SAME, BUT DIFFERENT !&nbsp;</h1></span>
+    <span class="txt t1"> <h1>VOTRE CASQUETTE ...&nbsp;</h1></span>
+    <span class="txt t2"> <h1>VOTRE CASQUETTE ...&nbsp;</h1></span>
+    <span class="txt t2"> <h1>VOTRE CASQUETTE ...&nbsp;</h1></span>
   </div>
 
-<div class="pattern-product">
   <%# <h1>Votre motif : <%= @pattern.name </h1> %>
-  </div>
-  <div class='card-product'>
+  <div class='card-devis'>
     <div class="parent-product" >
-      <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= @pattern.id %>" class="child-product bg-one" style="background-image: url('<%=@pattern.image_url%>')">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active button-black" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+          <%=image_tag "casquette-test.png", alt:"casquette-test"%>
+          </div>
+          <div class="carousel-item">
+           <video   preload="auto" autoplay loop muted="muted" volume="0">
+            <source src="../assets/images/casquette-test.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="carousel-item">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden"><p>Previous</p></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden"><p>Next</p></span>
+        </button>
       </div>
     </div>
   </div>
-  <div class="products">
-  <h1>Votre motif sur ...</h1>
-    <div class="devis">
-      <%= link_to "Casquette", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Papier peint", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Tee-shirt", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Sac", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Foulard", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Chaise de réal", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Chaise longue", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Coussin", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Bracelet", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Pull", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Maillot de bain H", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Maillot de bain F", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Gourde", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Chaussette", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-    <div class="devis">
-      <%= link_to "Coque de téléphone", pattern_devis_path(@pattern), class: "button-black" %>
-    </div>
-  </div>
+  <div class="infos-devis">
+    <h2>Votre casquette sur <%= @pattern.name %></h2>
+    <p>60€</p>
+    <p>Quantité</p>
+    <p>1</p>
+    <%= link_to "Ajouter au panier",  pattern_devis_path(@pattern), class: "button-white" %>
+    <p>Créez une casquette personnalisée avec votre design. Cette casquette entièrement personnalisable est vraiment un moyen de montrer votre talent créatif. Fabriquée à partir de votre choix de tissu en poly twill résistant doublé d’un sergé de coton mat pour un confortable optimal. Alors, n'attendez plus et commandez votre casquette imprimée avec votre design, et pourquoi ne pas lancer votre propre marque de casquette ?</p>
+
+    <li class="mb-1">
+      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#pannier-collapse" aria-expanded="false">
+        <h2>Tout est dans les détails</h2>
+      </button>
+      <div class="collapse" id="pannier-collapse">
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <p>Fabriquée à partir d’un tissu Poly twill idéal pour les chapeaux, notre casquette personnalisée est solide, douce et facile à porter. La doublure de cette casquette est en tissu respirant Airflow qui vous donne un confort idéal. Le ton blanc de la base du tissu donne un ton éclatant à votre impression.</p>
+      </ul>
+    </li>
+</div>
+
 
             <%# <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= @pattern.id " class="child bg-one" style="background-image: url('<%=pattern.image_url')"> %>
-
-</div>
