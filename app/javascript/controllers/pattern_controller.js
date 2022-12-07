@@ -13,8 +13,8 @@ export default class extends Controller {
     console.log("connecté");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas("canvas");
+    this.actions = document.getElementById("shape-block");
     this.#loadCanvas(); // On load le canvas s'il a déjà été sauvegardé
-    this.count = 0;
     this.json = JSON.stringify(this.canvas.toJSON()); // save the "virgin" canvas to a json file
     this.history = []; // history will store all the json files when we hit the save button
     this.index = -1; // index is the number of element of history. will be updated when we hit save as well
@@ -24,10 +24,12 @@ export default class extends Controller {
 
   clone() {
     let object = fabric.util.object.clone(this.canvas.getActiveObject());
-    object.set("top", object.top+100);
-    object.set("left", object.left+100);
+    object.set("top", object.top + 100);
+    object.set("left", object.left + 100);
     this.canvas.add(object);
     this.#autoSave();
+    this.#clearMyForms();
+    this.#fillMyForms();
   }
 
   #autoSave() {
@@ -39,10 +41,6 @@ export default class extends Controller {
     document.getElementById(
       "canva-bg"
     ).style.backgroundImage = `url(${this.canvas.toDataURL("png")})`; // change the background image with the image created from the canvas
-    // console.log("index")
-    // console.log(this.index)
-    // console.log("index")
-    // console.log(this.undo_index)
   }
 
   setActiveLayer(event) {
@@ -100,9 +98,11 @@ export default class extends Controller {
     if (this.undo_index > 0) {
       this.undo_index--;
     }
-    this.canvas.loadFromJSON(this.history[this.undo_index]); // We load the previsou version of the saved canvas
+    this.canvas.loadFromJSON(this.history[this.undo_index]); // We load the previous version of the saved canvas
     // re-render the canvas
     this.canvas.renderAll();
+    this.#clearMyForms();
+    this.#fillMyForms();
   }
 
   redo() {
@@ -113,13 +113,18 @@ export default class extends Controller {
     this.canvas.loadFromJSON(this.history[this.undo_index]); // We load the next version of the saved canvas
     // re-render the canvas
     this.canvas.renderAll();
+    this.#clearMyForms();
+    this.#fillMyForms();
   }
 
   #loadCanvas() {
     // parse the data into the canvas
     this.canvas.loadFromJSON(this.jsonValue);
+    // console.log(this.jsonValue);
     // re-render the canvas
     this.canvas.renderAll();
+    this.#clearMyForms();
+    this.#fillMyForms();
   }
 
   saveCanvas() {
@@ -137,7 +142,7 @@ export default class extends Controller {
       method: "PATCH", // Patch method to update our pattern
       headers: { Accept: "application/json", "X-CSRF-Token": csrfToken },
       body: formData, // we give the formdata declared above to the fetch body -> rails side, we can retrieve the info with params[:json]
-    }).then((response) => response.json());
+    });
     // .then((data) => {
     //   console.log(data)
     // })
@@ -186,6 +191,8 @@ export default class extends Controller {
     this.canvas.clear();
     this.canvas.renderAll();
     this.#autoSave();
+    this.#clearMyForms();
+    this.#fillMyForms();
   }
 
   removeSelection() {
@@ -193,6 +200,8 @@ export default class extends Controller {
     this.canvas.remove(this.canvas.getActiveObject());
     this.canvas.renderAll();
     this.#autoSave();
+    this.#clearMyForms();
+    this.#fillMyForms();
   }
 
   #loadSVG(objects, options) {
@@ -207,32 +216,55 @@ export default class extends Controller {
     this.obj.scaleToWidth(this.canvas.width / 2); // Scales it down to half the size of the canvas
     this.obj.center();
     this.canvas.renderAll();
-    this.count += 1;
     // afficher les formes et sous-formes
-    const actions = document.getElementById("shape-block");
-    this.obj.name = `FORME-${this.count}`;
-    actions.insertAdjacentHTML(
-      "beforeend",
-      `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${this.obj.name}</h3>`
-    );
-    let i = 0;
-    this.obj._objects.forEach((path) => {
-      path.id = `Forme-${this.count}-layer-${i}`;
-      actions.insertAdjacentHTML(
+    this.#clearMyForms();
+    this.#fillMyForms();
+  }
+
+  #clearMyForms() {
+    this.actions.innerHTML = "";
+  }
+
+  #fillMyForms() {
+    let count = 1;
+    const that = this;
+    // console.log(this.canvas.getObjects());
+    this.canvas.getObjects().forEach(function (obj) {
+      obj.name = `FORME-${count}`;
+      that.actions.insertAdjacentHTML(
         "beforeend",
-        `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-layer d-none" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${path.id}</div>`
+        `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${obj.name}</h3>`
       );
-      actions.insertAdjacentHTML(
-        "beforeend",
-        `<canvas data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' id="c-${path.id}" width="100" height="50"></canvas`
-      );
-      let canvas = new fabric.StaticCanvas(`c-${path.id}`);
-      let shapePath = new fabric.Path(path.d);
-      canvas.add(shapePath);
-      shapePath.scaleToHeight(canvas.height / 1.5);
-      shapePath.scaleToWidth(canvas.width / 3);
-      shapePath.center();
-      i++;
+      let i = 0;
+      obj._objects.forEach((path) => {
+        console.log(path);
+        path.id = `Forme-${count}-layer-${i}`;
+        that.actions.insertAdjacentHTML(
+          "beforeend",
+          `<div data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-layer d-none" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${path.id}</div>`
+        );
+        that.actions.insertAdjacentHTML(
+          "beforeend",
+          `<canvas data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' id="c-${path.id}" width="100" height="50"></canvas`
+        );
+        let real_path = [];
+        path.path.forEach((p) => {
+          console.log(p.join(","));
+          real_path.push(p.join(","));
+        });
+        let true_real_path = real_path.join("");
+        let canvas = new fabric.StaticCanvas(`c-${path.id}`);
+        // console.log(path.d);
+        let shapePath = new fabric.Path(true_real_path);
+        // console.log(canvas.add(path));
+        canvas.add(shapePath);
+        shapePath.scaleToHeight(canvas.height / 3);
+        shapePath.scaleToWidth(canvas.width / 3);
+        shapePath.center();
+        canvas.renderAll();
+        i++;
+      });
+      count++;
     });
   }
 }
