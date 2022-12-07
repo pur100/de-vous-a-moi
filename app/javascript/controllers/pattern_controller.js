@@ -41,7 +41,7 @@ export default class extends Controller {
     );
     this.displayBackgroundColorTarget.innerHTML = background_color_HTML;
     // on ajoute la bonne classe maintenant car si elle est en dur dans le html c'est caca
-    this.displayBackgroundColorTarget.classList.add("background-generator");
+    this.displayBackgroundColorTarget.classList.add("color-generator");
   }
 
   clone() {
@@ -253,7 +253,7 @@ export default class extends Controller {
     const that = this;
     this.canvas.getObjects().forEach(function (obj) {
       obj.name = `FORME-${count}`;
-      
+
       // bloc html pour afficher le menu déroulant
       const liHtml = `
         <li class="mb-1">
@@ -270,7 +270,7 @@ export default class extends Controller {
       `;
       const shapesContainer = document.getElementById("shapes-container");
       shapesContainer.insertAdjacentHTML("beforeend", liHtml);
-      
+
       // bloc html pour afficher les formes et sous formes dans les menu déroulants
       const actions = document.getElementById(`shape-block-${count}`);
       this.obj.name = `FORME-${count}`;
@@ -298,7 +298,7 @@ export default class extends Controller {
         let true_real_path = real_path.join("");
         let canvas = new fabric.StaticCanvas(`c-${path.id}`);
         let shapePath = new fabric.Path(true_real_path);
-        
+
         // on size les sous formes dans les piti canvas
         canvas.add(shapePath);
         shapePath.scaleToHeight(canvas.height / 3);
@@ -308,8 +308,8 @@ export default class extends Controller {
         i++;
       });
       count++;
-      });
-   }
+    });
+  }
 }
 
 // insérer une image issue du svg

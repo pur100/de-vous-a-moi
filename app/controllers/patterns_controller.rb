@@ -15,6 +15,16 @@ class PatternsController < ApplicationController
     redirect_to pattern_path(@pattern)
   end
 
+  def duplicate
+    pattern_to_duplicate = Pattern.find(params[:id])
+    @pattern = Pattern.new
+    @pattern.json = pattern_to_duplicate.json
+    @pattern.image_url = pattern_to_duplicate.json
+    @pattern.user = current_user
+    @pattern.save
+    redirect_to pattern_path(@pattern)
+  end
+
   def update
     @pattern = Pattern.find(params[:id])
     @pattern.json = params[:json] # We recover the json from the pattern.js controller (done with Ajax fetch)
