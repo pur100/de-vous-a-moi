@@ -4,6 +4,8 @@ import { fabric } from "fabric";
 // Save each shape as well
 
 export default class extends Controller {
+  static targets = ["displayColor", "displayBackgroundColor"];
+
   static values = {
     update: String, // updateValue is the link to pattern/id/update used in save function
     json: String, // jsonValue is pattern.json
@@ -19,7 +21,23 @@ export default class extends Controller {
     this.history = []; // history will store all the json files when we hit the save button
     this.index = -1; // index is the number of element of history. will be updated when we hit save as well
     this.undo_index = -1; // we will decrement undo_index each time we hit undo and increment it each time we hit redo
-    this.canvas.on("object:modified", this.#autoSave.bind(this)); // we set an envent listenner on object:modified so that each time a modification is done, we call private function autosave
+    // we set an envent listenner on object:modified so that each time a modification is done,
+    // we call private function autosave
+    this.canvas.on("object:modified", this.#autoSave.bind(this));
+  }
+
+  selectedColor(event) {
+    console.log("in color selector");
+    // displayColorTarget désigne la palette sélectionnée que l'on veut afficher près de notre canvas
+    // on lui donne la valeur de la palette de couleur sélectionnée
+    this.displayColorTarget.innerHTML = event.currentTarget.innerHTML;
+    // on donne la même palette pour la background color. On vient juste modifier la data action pour
+    // que lorsque l'on clique dessus ce soit le background color qui soit setté
+    let background_color_HTML = event.currentTarget.innerHTML.replace(
+      /changeShapeColor/g,
+      "setBackgroundColor"
+    );
+    this.displayBackgroundColorTarget.innerHTML = background_color_HTML;
   }
 
   clone() {
@@ -130,22 +148,23 @@ export default class extends Controller {
   saveCanvas() {
     // convert canvas to a json string
     this.json = JSON.stringify(this.canvas.toJSON());
+    // we convert the canvas to an image as a base 64 string
+    let img_url = this.canvas.toDataURL("png");
     // Create a new formdata to send json to rails via AJAX fetch
     const formData = new FormData();
     // We give our json to formdata
     formData.append("json", this.json);
+    // We give our image to formdata
+    formData.append("image_url", img_url);
     // Token for security
     const csrfToken = document.getElementsByName("csrf-token")[0].content;
 
-    // On vient fetcher l'url pattern/id/update en lui donnant le this.json en body pour lé récupérer dans le controller rails
+    // On vient fetcher l'url pattern/id/update en lui donnant le formdata en body pour lé récupérer dans le controller rails
     fetch(this.updateValue, {
       method: "PATCH", // Patch method to update our pattern
       headers: { Accept: "application/json", "X-CSRF-Token": csrfToken },
       body: formData, // we give the formdata declared above to the fetch body -> rails side, we can retrieve the info with params[:json]
     });
-    // .then((data) => {
-    //   console.log(data)
-    // })
   }
 
   addAShape(event) {
@@ -228,9 +247,29 @@ export default class extends Controller {
   #fillMyForms() {
     let count = 1;
     const that = this;
-    // console.log(this.canvas.getObjects());
     this.canvas.getObjects().forEach(function (obj) {
       obj.name = `FORME-${count}`;
+      
+      // bloc html pour afficher le menu déroulant
+      const liHtml = `
+        <li class="mb-1">
+          <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#yourshapes-collapse-${count}" aria-expanded="false">
+            <h4 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';" class="title-shape">FORME-${count}</h4>
+          </button>
+          <div class="collapse" id="yourshapes-collapse-${count}">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <div class="title-layer" id="shape-block-${count}">
+              </div>
+            </ul>
+          </div>
+        </li>
+      `;
+      const shapesContainer = document.getElementById("shapes-container");
+      shapesContainer.insertAdjacentHTML("beforeend", liHtml);
+      
+      // bloc html pour afficher les formes et sous formes dans les menu déroulants
+      const actions = document.getElementById(`shape-block-${count}`);
+      this.obj.name = `FORME-${count}`;
       that.actions.insertAdjacentHTML(
         "beforeend",
         `<h3 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';">${obj.name}</h3>`
@@ -254,9 +293,9 @@ export default class extends Controller {
         });
         let true_real_path = real_path.join("");
         let canvas = new fabric.StaticCanvas(`c-${path.id}`);
-        // console.log(path.d);
         let shapePath = new fabric.Path(true_real_path);
-        // console.log(canvas.add(path));
+        
+        // on size les sous formes dans les piti canvas
         canvas.add(shapePath);
         shapePath.scaleToHeight(canvas.height / 3);
         shapePath.scaleToWidth(canvas.width / 3);
@@ -265,8 +304,8 @@ export default class extends Controller {
         i++;
       });
       count++;
-    });
-  }
+      });
+   }
 }
 
 // insérer une image issue du svg

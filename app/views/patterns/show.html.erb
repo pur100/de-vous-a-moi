@@ -1,13 +1,14 @@
 
 <%# <div class="wrapper-all"> %>
 
-<div id="canva-bg" data-controller="pattern" style="background-image:url('something.png'); display: flex;" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
+<div id="canva-bg" data-controller="pattern" style="display: flex;" data-pattern-update-value="<%=pattern_path(@pattern)%>" data-pattern-json-value="<%=@pattern.json%>">
 
     <canvas id="canvas" width="500" height="500" position="absolute" ></canvas>
 
   <%= render "shared/collapsible_sidebar", class:"espace-créa" %>
   <%= render "shared/collapsible_myforms",class:"forms"  %>
 </div>
+
 
 
 <%# <div id="shape-block"> %>
@@ -32,3 +33,8 @@ width: 200px;
 height: content;
 } */
 </style>
+
+<div>
+<%= @pattern.name %>
+ <img src="<%=@pattern.image_url%>" alt="Red dot" />
+</div>

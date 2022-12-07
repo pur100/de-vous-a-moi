@@ -12,17 +12,20 @@
         <form action="<%=patterns_path%>" method="post">
           <div class="mb-3">
             <label for="name" class="col-form-label">Nom de votre motif</label>
-            <input type="text" class="form-control" name="name" id="name">
-            <input type="submit" value="Subscribe!">
+            <input type="text" class="form-control" name="name" id="name" required>
+               <input class="button-black" type="submit" value="Commencer" >
           </div>
         </form>
       </div>
       <div class="modal-footer">
+
         <a  class="button-white" data-bs-dismiss="modal">Fermer</a>
-        <%= link_to "Commencer",  patterns_path, data: {turbo_method: :post}, class: "button-black" %>
       </div>
     </div>
   </div>
 </div>
 
- <!-- Modal -->
+
+
+<!-- Modal -->
+

@@ -3,20 +3,129 @@
   <div class="flex-shrink-0 p-3 bg-white">
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-5 fw-semibold">Menu de création</span>
+      <span class="fs-5 fw-semibold"><%= @pattern.name%></span>
     </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+        <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
           <h4>Profil colorimétrique</h4>
         </button>
-        <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <div class="color-generator">
-            <% @color_range.each do |color| %>
-              <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color%>; color: <%= color%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color%></li>
+        <div class="collapse" id="home-collapse">
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+            <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#trois-c-collapse" aria-expanded="false">
+              <h4>3 couleurs</h4>
+            </button>
+            <% @color_ranges.each do |color| %>
+              <% if color.color4.nil? %>
+              <div class="color-generator">
+                <div class="collapse ranges-colors" id="trois-c-collapse">
+                  <ul id="range" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <div class="color-generator" data-action="click->pattern#selectedColor">
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
+                    </div>
+                  </ul>
+                </div>
+              <% end %>
             <% end %>
-          </div>
+            <%# </div> %>
+            </li>
+          </ul>
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+            <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#quatre-c-collapse" aria-expanded="false">
+              <h4>4 couleurs</h4>
+            </button>
+            <% @color_ranges.each do |color| %>
+              <% if color.color4.nil? == false && color.color5.nil? %>
+                <div class="collapse ranges-colors" id="quatre-c-collapse">
+                  <ul id="range" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <div class="color-generator"  data-action="click->pattern#selectedColor">
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color4%>; color: <%= color.color4%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color4%></li>
+                    </div>
+                  </ul>
+                </div>
+              <% end %>
+            <% end %>
+            </li>
+          </ul>
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+            <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#cinq-c-collapse" aria-expanded="false">
+              <h4>5 couleurs</h4>
+            </button>
+            <% @color_ranges.each do |color| %>
+              <% if color.color4.nil? == false && color.color5.nil? == false && color.color6.nil? %>
+                <div class="collapse ranges-colors" id="cinq-c-collapse">
+                  <ul id="range" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <div class="color-generator"  data-action="click->pattern#selectedColor">
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color4%>; color: <%= color.color4%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color4%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color5%>; color: <%= color.color5%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color5%></li>
+                    </div>
+                  </ul>
+                </div>
+              <% end %>
+            <% end %>
+            </li>
+          </ul>
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+            <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#six-c-collapse" aria-expanded="false">
+              <h4>6 couleurs</h4>
+            </button>
+            <% @color_ranges.each do |color| %>
+              <% if color.color4.nil? == false && color.color5.nil? == false && color.color6.nil? == false && color.color7.nil? %>
+
+                <div class="collapse ranges-colors" id="six-c-collapse">
+                  <ul id="range" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <div class="color-generator"  data-action="click->pattern#selectedColor">
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color4%>; color: <%= color.color4%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color4%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color5%>; color: <%= color.color5%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color5%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color6%>; color: <%= color.color6%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color6%></li>
+                    </div>
+                  </ul>
+                </div>
+              <% end %>
+            <% end %>
+            </li>
+          </ul>
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+            <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#sept-c-collapse" aria-expanded="false">
+              <h4>7 couleurs</h4>
+            </button>
+
+            <% @color_ranges.each do |color| %>
+              <% if color.color7.nil? == false %>
+
+                <div class="collapse ranges-colors" id="sept-c-collapse">
+                  <ul id="range" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <div class="color-generator"  data-action="click->pattern#selectedColor">
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color1%>; color: <%= color.color1%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color1%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color2%>; color: <%= color.color2%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color2%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color3%>; color: <%= color.color3%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color3%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color4%>; color: <%= color.color4%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color4%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color5%>; color: <%= color.color5%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color5%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color6%>; color: <%= color.color6%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color6%></li>
+                      <li data-action="click->pattern#changeShapeColor" style="background-color: <%=color.color7%>; color: <%= color.color7%>; white-space: nowrap; overflow: hidden; margin:0;" class="color btn list-unstyled"><%= color.color7%></li>
+                    </div>
+                  </ul>
+                </div>
+              <% end %>
+            <% end %>
+
+            </li>
           </ul>
         </div>
       </li>
@@ -25,7 +134,7 @@
           <h4>Action</h4>
         </button>
         <div class="collapse" id="dashboard-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <ul id="range" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <div class="action-generator">
               <button data-action="click->pattern#groupSelection" class="button-white">Select all</button>
               <%# <button data-action="click->pattern#unGroupSelection" class="button-black">Ungroup All</button> %>
@@ -46,10 +155,7 @@
         </button>
         <div class="collapse" id="orders-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <div class="background-generator">
-             <% @color_range.each do |color| %>
-            <li data-action="click->pattern#setBackgroundColor" style="background-color: <%=color%>; color: <%= color%>; white-space: nowrap; overflow: hidden; margin:0;" class="btn list-unstyled"> <%= color%></li>
-          <% end %>
+          <div class="background-generator" data-pattern-target="displayBackgroundColor">
           </div>
         </ul>
       </li>
@@ -61,17 +167,114 @@
         <div class="collapse" id="account-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <div class="shapes-generator">
-            <%= inline_svg_tag "losange.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
-          </div>
-          <div class="shapes-generator">
             <%= inline_svg_tag "colibri.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
           </div>
           <div class="shapes-generator">
-            <%= inline_svg_tag "crabe.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+            <%= inline_svg_tag "shapes/shape-1.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
           </div>
           <div class="shapes-generator">
-            <%= inline_svg_tag "fleur.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+            <%= inline_svg_tag "shapes/shape-2.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
           </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-3.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-4.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-5.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-6.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-7.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-8.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-9.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-10.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-11.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-12.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-13.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-14.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-15.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-16.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-17.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-18.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-19.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-20.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-21.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-22.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-23.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-24.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-26.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-27.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-28.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-29.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-30.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-31.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-32.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-33.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-34.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-35.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+          <div class="shapes-generator">
+            <%= inline_svg_tag "shapes/shape-36.svg", height: '100', width: '100', data: { action: "click->pattern#addAShape" } %>
+          </div>
+
           </ul>
         </div>
       </li>
