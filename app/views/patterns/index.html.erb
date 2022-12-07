@@ -75,7 +75,7 @@
 
                   <%= link_to "Voir les produits", pattern_products_path(pattern.id), class: "button-black" %>
                   <%= link_to "Éditer ce motif", duplicate_pattern_path(pattern), data: {turbo_method: :post}, class: "button-black" %>
-                   <%= link_to "Delete", pattern_path(pattern), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button-black"%>
+                   <%= link_to "Supprimer", pattern_path(pattern), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button-black"%>
                   <%# <button type="button" class="btn button-black" data-bs-dismiss="modal">Éditer ce motif</button> %>
                   <%# <button type="button" class="btn button-black">Voir les produits</button> %>
                 </div>
