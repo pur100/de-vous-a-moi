@@ -27,8 +27,7 @@
     <p>Quantité</p>
     <div class="panier">
     <input type="number" pattern="[0-9]*" data-hook="number-input-spinner-input" value="1" aria-label="Quantité" max="50" min="1" data-dashlane-rid="65439c25c501ec8e" data-form-type="other" class='quantité'>
-    </span>
-    <%= link_to "Ajouter au panier",  pattern_devis_path(@pattern), class: "button-black" %>
+    <button data-action="click->panier#ajouteAuPanier" class="button-black">Ajouter au panier</button>
     </div>
     <div class="desc-devis">
      <p>Créez une casquette personnalisée avec votre design. Cette casquette entièrement personnalisable est vraiment un moyen de montrer votre talent créatif. Alors, n'attendez plus et commandez votre casquette imprimée avec votre design, et pourquoi ne pas lancer votre propre marque de casquette ?</p>
