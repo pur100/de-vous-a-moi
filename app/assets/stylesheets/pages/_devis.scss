@@ -3,23 +3,26 @@
     grid-template-columns: 1fr 1fr;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px;
     /* min-height: 475px; */
     margin-top: 13%;
+        margin-right: 20px;
+    margin-left: 30px;
+    padding-bottom: 20px;
 }
 
 .card-devis {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  height: 31vw;
-  margin-bottom: 35px;
+  /* height: 31vw; */
+  /* margin-bottom: 35px; */
   position: -webkit-sticky;
-  margin-left: 7%;
-  // box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
-  position: unset;
-  gap: 1rem;
+  /* margin-left: 7%; */
+  /* position: unset; */
+  /* gap: 1rem; */
   border-radius: 0.5rem;
+
   video {
     width: 100% !important;
     height: auto !important;
@@ -30,5 +33,213 @@
 .infos-devis {
   width: 80%;
   height: 258px;
+  position: sticky;
+    top: 0;
+    left: 0;
+  .desc-devis {
+    padding: 30px 0;
+  }
+  a{
+    width: 230px;
+    margin: 0;
 
+  }
+  .quantité {
+    border: 1px solid #888888;
+    width: 49px;
+    border-radius: 3px;
+    background-color: white;
+    /* padding: 19px; */
+    text-align: center;
+  }
+
+}
+
+
+.pattern-devis{
+  margin-top: 7%;
+  margin-left: 12%;
+}
+.card-devis {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  top: 33vh;
+  left: 5vh;
+  position: sticky;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  // background: aquamarine;
+
+
+  h2 {
+    font-size: 16px;
+    margin: 0;
+  }
+
+}
+
+.parent-devis {
+  border-radius: 0.5rem ;
+  height: 430px;
+  width: 95%;
+  background-size: cover;
+  // border: 1px solid blue;
+  overflow: hidden;
+  position: relative;
+  background: white;
+  display: inline-block;
+
+  cursor: pointer;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  video {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+}
+
+.child-devis {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+.parent-devis:hover .child-devis, .parent-devis:focus .child-devis {
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.parent-devis:hover .child-devis:before, .parent-devis:focus .child-devis:before {
+  display: block;
+
+}
+
+.child-devis:before {
+  content: "";
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.box-black {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+  &:hover {
+    opacity: 0;
+  }
+}
+
+.card-devis-desc {
+
+  padding: 1rem;
+  color: #9397ad;
+  top: -15px;
+  height: 92px;
+  position: relative;
+  .card-devis-desc-last .fa-solid{
+    gap: 1rem;
+    position: absolute;
+    right: 16px;
+    top: 61px;
+    font-size: 22px;
+    color: white;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 3px;
+    &:hover{
+      background: #888888;;
+      color: white;
+      }
+    }
+
+  .card-devis-desc-first {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+
+}
+#overlay {
+  // background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
+
+    .card-devis-overlay {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-radius: 0.5rem;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      background-color: white;
+      padding: 30px;
+    }
+    .parent-devis-overlay {
+      border-radius: 0.5rem;
+      height: 416px;
+      width: 100%;
+      background-size: cover;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+
+    }
+
+
+  .card-devis-desc-overlay {
+    padding: 1rem;
+    color: #9397ad;
+    position: relative;
+    .card-devis-desc-last-overlay img{
+      gap: 1rem;
+      position: absolute;
+      right: 26px;
+      top: -26px;
+      height: 30px;
+      &:hover{
+        filter: brightness(0.5);
+        }
+      }
+
+    .card-devis-desc-first-overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      position: relative;
+    }
+
+    .card-devis-desc-last-overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      a {
+        margin-top: 10px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
 }
