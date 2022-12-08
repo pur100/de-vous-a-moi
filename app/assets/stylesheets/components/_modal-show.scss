@@ -1,0 +1,120 @@
+
+
+.parent-show {
+  border-radius: 0.5rem;
+  height: 380px;
+  width: 100%;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+
+}
+
+.child-show {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+.parent-show:hover .child-show, .parent-show:focus .child-show {
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.parent-show:hover .child-show:before, .parent-show:focus .child-show:before {
+  display: block;
+
+}
+
+.child-show:before {
+  content: "";
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+
+}
+#overlay {
+  // background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
+
+    .card-overlay {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-radius: 0.5rem;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      background-color: white;
+      padding: 30px;
+    }
+    .parent-show-overlay {
+      border-radius: 0.5rem;
+      height: 416px;
+      width: 100%;
+      background-size: cover;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+
+    }
+
+
+  .card-desc-overlay {
+    padding: 1rem;
+    color: #9397ad;
+    position: relative;
+    display: contents;
+
+    .card-desc-last-overlay img{
+      gap: 1rem;
+      position: absolute;
+      right: 26px;
+      top: -26px;
+      height: 30px;
+      &:hover{
+        filter: brightness(0.5);
+        }
+      }
+
+    .card-desc-first-overlay {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 10px;
+      a {
+        margin: 0;
+      }
+    }
+
+    .card-desc-last-overlay {
+      justify-content: center;
+      display: flex;
+      margin-top: 15px;
+      // a {
+      //   margin-top: 10px;
+      //   width: 200px;
+      //   display: flex;
+      //   justify-content: center;
+      // }
+    }
+  }
+}

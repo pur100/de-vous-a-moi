@@ -43,12 +43,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <div class='card-show'>
         <div class="parent-show" >
-          <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= @pattern.id %>" class="child-show bg-one" style="background-image: url('<%=@pattern.image_url%>');background-repeat: repeat;background-size: 21%;">
-          </div>
+            <div class="child-show bg-one" style="background-image: url('<%=@pattern.image_url%>');background-repeat: repeat;background-size: 21%;">
+            </div>
         </div>
-      </div>
       <div class="modal-footer">
           <button type="button" class="button-white" data-bs-dismiss="modal">Fermer</button>
           <%= link_to "Voir les produits", pattern_products_path(@pattern.id), class: "button-black" %>

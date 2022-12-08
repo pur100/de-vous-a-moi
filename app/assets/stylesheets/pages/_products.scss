@@ -1,6 +1,6 @@
 
 .wrapper {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: inline-flex;
   align-content: space-between;
@@ -9,13 +9,13 @@
 
 .pattern-product{
   margin-top: 7%;
-  margin-left: 4%;
+  margin-left: 12%;
 }
 .card-product {
   width: 40%;
   display: flex;
   flex-direction: column;
-  height: 60%;
+  height: 70%;
   top: 33vh;
   left: 5vh;
   position: sticky;
@@ -198,11 +198,17 @@
   }
   .devis {
     text-align: center;
-  }
+    margin-bottom: 50%;
+
   ul {
     list-style: none;
       display: flex;
       flex-flow: column wrap;
       height: 27em;
+      li {
+        width: 88%;
+
+      }
   }
+}
 }
