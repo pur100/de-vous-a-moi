@@ -1,5 +1,8 @@
 @import "components/button-sidebar";
 
+.wrapp {
+  height: 100vw;
+}
 // .wrapper-all {
 //   display:flex ;
   .canvas-container:has(canvas){
@@ -82,6 +85,10 @@
     border-radius: 3px;
     margin-top: 14px;
     margin-bottom: 0;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 90%;
 
   }
 
