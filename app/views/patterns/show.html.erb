@@ -32,7 +32,7 @@
     </button></div>
   </div>
 
-<div id="canva-bg"></div>
+  <div id="canva-bg" data-pattern-target="canvaBg"></div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="aperçu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,7 +44,7 @@
       </div>
       <div class="modal-body">
         <div class="parent-show" >
-            <div class="child-show bg-one" style="background-image: url('<%=@pattern.image_url%>');background-repeat: repeat;background-size: 21%;">
+            <div id="apercu-bg" class="child-show bg-one" style="background-repeat: repeat;background-size: 21%;">
             </div>
         </div>
       <div class="modal-footer">
