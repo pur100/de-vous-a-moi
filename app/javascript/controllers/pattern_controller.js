@@ -364,7 +364,7 @@ export default class extends Controller {
     const that = this;
     this.canvas.getObjects().forEach(function (obj) {
       // compter ShapeName value dans un hash. Si la value existe déjà (qu'une forme a déjà été mise), on a joute - 2 / -3 au nom de la forme
-      console.log(obj);
+      // console.log(obj);
       obj.name = `Forme-${count}`; //`${that.svg_id}-${count}`
       let shapeId = `shape-block-${count}`;
       // bloc html pour afficher le menu déroulant
