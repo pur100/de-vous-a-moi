@@ -20,14 +20,12 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body div data-controller="panier">
-  <%# <div data-controller="panier"> %>
+  <body data-controller="panier">
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
     <div class="layout">
       <%= yield %>
     </div>
     <%= render "shared/footer" %>
-  <%# </div> %>
   </body>
 </html>
