@@ -5,10 +5,15 @@ export default class extends Controller {
   static targets = ["iconePanier"];
 
   connect() {
-    console.log("dans panier");
+    this.nb_click = 0;
   }
 
   ajouteAuPanier() {
-    console.log("cliqué sur panier");
+    this.nb_click += 1;
+    this.iconePanierTarget.classList.add("notify-scale");
+    this.iconePanierTarget.innerHTML = this.nb_click;
+    new Promise((resolve) => setTimeout(resolve, 150)).then(() => {
+      this.iconePanierTarget.classList.remove("notify-scale");
+    });
   }
 }

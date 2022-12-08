@@ -1,4 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "homepage/logo.png" %>
@@ -13,11 +14,9 @@
         <% if user_signed_in? %>
           <li class="nav-item active">
                 <a class="button-black" data-bs-toggle="modal" data-bs-target="#exampleModal" >Créer</a>
-
-
           </li>
           <li class="nav-item">
-            <span data-panier-target="iconePanier" class="notify-number">0</span>
+            <div data-panier-target="iconePanier" class="notify-number">0</div>
             <%= link_to "#" do %>
               <%= image_tag "homepage/panier.svg" %>
             <% end %>

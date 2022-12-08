@@ -6,7 +6,7 @@
 
   <%# <h1>Votre motif : <%= @pattern.name </h1> %>
   <%# <div class='card-devis'> %>
-  <div class="wrapper-devis" data-controller='panier'>
+  <div class="wrapper-devis">
     <div class="parent-product" >
       <div class="parent-devis" >
       <div class="child-devis bg-one" style="background-image: url('<%=image_path "casquette-test.png"%>'); background-size: 70%;background-position: center;">
@@ -27,7 +27,7 @@
     <p>Quantité</p>
     <div class="panier">
     <input type="number" pattern="[0-9]*" data-hook="number-input-spinner-input" value="1" aria-label="Quantité" max="50" min="1" data-dashlane-rid="65439c25c501ec8e" data-form-type="other" class='quantité'>
-       <p data-action="click->panier#ajouteAuPanier"><%= link_to "Ajouter au panier", "#", class: "button-black" %></p>
+       <button class="button-black" style="width:199px; margin-top:24px;" data-action="click->panier#ajouteAuPanier">Ajouter au panier</button>
     </div>
     <div class="desc-devis">
      <p>Créez une casquette personnalisée avec votre design. Cette casquette entièrement personnalisable est vraiment un moyen de montrer votre talent créatif. Alors, n'attendez plus et commandez votre casquette imprimée avec votre design, et pourquoi ne pas lancer votre propre marque de casquette ?</p>
