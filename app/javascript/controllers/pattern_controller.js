@@ -17,7 +17,7 @@ export default class extends Controller {
   };
 
   connect() {
-    console.log("connecté");
+    console.log("connectéd");
     // on crée un canvas de travail pour fabric dans le canvas HTML et on en fait une variable d'instance
     this.canvas = new fabric.Canvas("canvas");
     this.shapesContainer = document.getElementById("shapes-container");
@@ -110,6 +110,7 @@ export default class extends Controller {
       });
     });
     this.canvas.renderAll();
+    this.#autoSave();
   }
   //   if (randomColor.trim() === this.canvas.backgroundColor.trim()) {
   //     colorArray.forEach((color) => {
@@ -145,6 +146,7 @@ export default class extends Controller {
       });
     });
     this.canvas.renderAll();
+    this.#autoSave();
   }
 
   clone() {
@@ -159,7 +161,9 @@ export default class extends Controller {
 
   #autoSave() {
     console.log("autosaved");
-    this.json = JSON.stringify(this.canvas.toJSON());
+    this.json = JSON.stringify(
+      this.canvas.toJSON(["cornerStyle", "shapeName"])
+    );
     this.history.push(this.json);
     this.index++;
     this.undo_index = this.index;
