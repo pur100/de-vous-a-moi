@@ -270,6 +270,7 @@ export default class extends Controller {
 
   addAShape(event) {
     // On vient chercher le svg cliqué grace au event.target.innerHTML
+    this.svg_id = event.currentTarget.id;
     fabric.loadSVGFromString(event.target.innerHTML, this.#loadSVG.bind(this));
     this.#autoSave();
   }
@@ -328,7 +329,7 @@ export default class extends Controller {
     // load SVG
     this.obj = fabric.util.groupSVGElements(
       objects,
-      (options = { cornerStyle: "circle" })
+      (options = { cornerStyle: "circle", shapeName: this.svg_id })
     );
     // this.obj.#cornerStyle('circle');
     this.canvas.add(this.obj);
@@ -350,13 +351,14 @@ export default class extends Controller {
     let count = 1;
     const that = this;
     this.canvas.getObjects().forEach(function (obj) {
-      obj.name = `FORME-${count}`;
+      // compter ShapeName value dans un hash. Si la value existe déjà (qu'une forme a déjà été mise), on a joute - 2 / -3 au nom de la forme
+      obj.name = `${that.svg_id}-${count}`;
       let shapeId = `shape-block-${count}`;
       // bloc html pour afficher le menu déroulant
       let liHtml = `
         <li class="mb-1">
           <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#yourshapes-collapse-${count}" aria-expanded="false">
-            <h4 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';" class="title-shape">${obj.name}</h4>
+            <h4 data-action='click->pattern#setActiveLayer mouseenter->pattern#highlightLayer mouseleave->pattern#unHighlightLayer' class="title-shape" onmouseover="this.style.background='#696969';this.style.color='#FFFFFF';" onmouseout="this.style.background='';this.style.color='';" class="title-shape">${obj.shapeName}</h4>
           </button>
           <div class="collapse" id="yourshapes-collapse-${count}">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
