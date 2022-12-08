@@ -4,7 +4,12 @@ import { fabric } from "fabric";
 // Save each shape as well
 
 export default class extends Controller {
-  static targets = ["displayColor", "displayBackgroundColor"];
+  static targets = [
+    "displayColor",
+    "displayBackgroundColor",
+    "canvaBg",
+    "apercuBg",
+  ];
 
   static values = {
     update: String, // updateValue is the link to pattern/id/update used in save function
@@ -23,6 +28,7 @@ export default class extends Controller {
     this.undo_index = -1; // we will decrement undo_index each time we hit undo and increment it each time we hit redo
     // we set an envent listenner on object:modified so that each time a modification is done,
     // we call private function autosave
+    this.#autoSave();
     this.canvas.on("object:modified", this.#autoSave.bind(this));
   }
 
@@ -157,8 +163,14 @@ export default class extends Controller {
     this.history.push(this.json);
     this.index++;
     this.undo_index = this.index;
+    // document.getElementById(
+    //   "canva-bg"
+    // ).style.backgroundImage = `url(${this.canvas.toDataURL("png")})`; // change the background image with the image created from the canvas
+    this.canvaBgTarget.style.backgroundImage = `url(${this.canvas.toDataURL(
+      "png"
+    )})`; // change the background image with the image created from the canvas
     document.getElementById(
-      "canva-bg"
+      "apercu-bg"
     ).style.backgroundImage = `url(${this.canvas.toDataURL("png")})`; // change the background image with the image created from the canvas
   }
 
