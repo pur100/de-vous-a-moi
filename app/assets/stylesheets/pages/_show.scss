@@ -9,7 +9,7 @@
   .canvas-container:has(canvas){
 
     position: fixed !important;
-    left: 60% !important;
+    left: 51% !important;
     top: 25% !important;
 
 
@@ -57,7 +57,7 @@
 }
 
 .action-generator {
-    /* position: fixed; */
+    position: fixed;
     /* top: 156px; */
     /* left: 46%; */
     /* display: inline-grid; */
@@ -71,7 +71,7 @@
     /* border-right: 1px solid #888888; */
     position: fixed;
     top: 21%;
-    left: 44%;
+    left: 25%;
     text-align: center;
     overflow-y: scroll;
     padding-left: 2px;
