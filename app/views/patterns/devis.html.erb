@@ -20,44 +20,45 @@
         </div>
       </div>
     </div>
-
-  <div class="infos-devis">
-    <h2>Votre casquette <strong><%= @pattern.name %></strong></h2>
-    <p>60€</p>
-    <p>Quantité</p>
-    <div class="panier">
-    <input type="number" pattern="[0-9]*" data-hook="number-input-spinner-input" value="1" aria-label="Quantité" max="50" min="1" data-dashlane-rid="65439c25c501ec8e" data-form-type="other" class='quantité'>
-       <button class="button-black" style="width:199px; margin-top:24px;" data-action="click->panier#ajouteAuPanier">Ajouter au panier</button>
+  <div class="margin-top">
+    <div class="infos-devis">
+      <h2>Votre casquette <strong><%= @pattern.name %></strong></h2>
+      <p>60€</p>
+      <p>Quantité</p>
+      <div class="panier">
+      <input type="number" pattern="[0-9]*" data-hook="number-input-spinner-input" value="1" aria-label="Quantité" max="50" min="1" data-dashlane-rid="65439c25c501ec8e" data-form-type="other" class='quantité'>
+        <button class="button-black" style="width:199px; margin-top:24px;" data-action="click->panier#ajouteAuPanier">Ajouter au panier</button>
+      </div>
+      <div class="desc-devis">
+      <p>Créez une casquette personnalisée avec votre design. Cette casquette entièrement personnalisable est vraiment un moyen de montrer votre talent créatif. Alors, n'attendez plus et commandez votre casquette imprimée avec votre design, et pourquoi ne pas lancer votre propre marque de casquette ?</p>
     </div>
-    <div class="desc-devis">
-     <p>Créez une casquette personnalisée avec votre design. Cette casquette entièrement personnalisable est vraiment un moyen de montrer votre talent créatif. Alors, n'attendez plus et commandez votre casquette imprimée avec votre design, et pourquoi ne pas lancer votre propre marque de casquette ?</p>
-  </div>
 
-  <div id="main-3">
-    <ul class="list-unstyled ps-0">
-      <li class="mb-1">
-        <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#détails-collapse" aria-expanded="false">
-          <h4>Tout est dans les détails</h4>
-        </button>
-        <div class="collapse" id="détails-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <p>Fabriquée à partir d’un tissu Poly twill idéal pour les chapeaux, notre casquette personnalisée est solide, douce et facile à porter. La doublure de cette casquette est en tissu respirant Airflow qui vous donne un confort idéal. Le ton blanc de la base du tissu donne un ton éclatant à votre impression.</p>
-          </ul>
-        </div>
-      </li>
+    <div id="main-3">
+      <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+          <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#détails-collapse" aria-expanded="false">
+            <h4>Tout est dans les détails</h4>
+          </button>
+          <div class="collapse" id="détails-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <p>Fabriquée à partir d’un tissu Poly twill idéal pour les chapeaux, notre casquette personnalisée est solide, douce et facile à porter. La doublure de cette casquette est en tissu respirant Airflow qui vous donne un confort idéal. Le ton blanc de la base du tissu donne un ton éclatant à votre impression.</p>
+            </ul>
+          </div>
+        </li>
 
-      <li class="mb-1">
-        <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#taille-collapse" aria-expanded="false">
-          <h4>Problème de taille</h4>
-        </button>
-        <div class="collapse" id="taille-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <p>Cette casquette peut etre ajustée à l'aide d'une bande arrière réglable pour un confort optimal. Si votre tour de tête se situe entre deux tailles, nous vous recommandons de choisir la taille la plus grande. Notre modèle porte une casquette de taille petite/moyenne.</p>
-          </ul>
-        </div>
-      </li>
+        <li class="mb-1">
+          <button class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#taille-collapse" aria-expanded="false">
+            <h4>Problème de taille</h4>
+          </button>
+          <div class="collapse" id="taille-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <p>Cette casquette peut etre ajustée à l'aide d'une bande arrière réglable pour un confort optimal. Si votre tour de tête se situe entre deux tailles, nous vous recommandons de choisir la taille la plus grande. Notre modèle porte une casquette de taille petite/moyenne.</p>
+            </ul>
+          </div>
+        </li>
 
-    </ul>
+      </ul>
+    </div>
   </div>
 </div>
 
